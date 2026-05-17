@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MVP设计 — AI产品开发</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="3" data-total="6">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-amber reveal">AI 产品开发模块</div>
+<h1 class="reveal d1 slide-title">MVP（最小可行性方案）设计</h1>
+<p class="subtitle reveal d2">资源规划、验收标准、数据采集与模型选择</p>
+
+<div class="grid-2 reveal d3" style="gap:24px;align-items:stretch;margin-bottom:24px">
+  <!-- 1. 资源规划 -->
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div class="phase-num purple" style="margin:0;width:36px;height:36px;min-width:36px;font-size:0.85rem">1</div>
+      <h2>资源规划</h2>
+    </div>
+    <table class="styled-table" style="margin:0">
+      <thead><tr><th>维度</th><th>核心内容</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--purple-l)">人力</strong></td><td>跨职能团队组建</td></tr>
+        <tr><td><strong style="color:var(--blue-l)">时间</strong></td><td>开发周期</td></tr>
+        <tr><td><strong style="color:var(--cyan-l)">技术</strong></td><td>云服务 / 全链路方案</td></tr>
+        <tr><td><strong style="color:var(--green-l)">预算</strong></td><td>数据 / 算力 / 人力成本</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 2. 验收标准 -->
+  <div class="card" style="display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div class="phase-num blue" style="margin:0;width:36px;height:36px;min-width:36px;font-size:0.85rem">2</div>
+      <h2>验收标准</h2>
+    </div>
+    <div class="grid-2" style="gap:10px;flex:1">
+      <div style="padding:12px;border-radius:10px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);font-size:0.82rem">
+        <strong style="color:var(--purple-l)">功能指标</strong><br><span style="color:var(--c3)">完成率、稳定性</span>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);font-size:0.82rem">
+        <strong style="color:var(--blue-l)">AI 指标</strong><br><span style="color:var(--c3)">准确率、召回率、F1</span>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.15);font-size:0.82rem">
+        <strong style="color:var(--cyan-l)">用户指标</strong><br><span style="color:var(--c3)">NPS、留存率</span>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);font-size:0.82rem">
+        <strong style="color:var(--green-l)">商业指标</strong><br><span style="color:var(--c3)">转化率</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid-2 reveal d4" style="gap:24px;align-items:start">
+  <!-- 3. 数据采集 -->
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div class="phase-num cyan" style="margin:0;width:36px;height:36px;min-width:36px;font-size:0.85rem">3</div>
+      <h2>数据采集</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="padding:12px;border-radius:10px;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.12)">
+        <span class="badge badge-cyan" style="margin-bottom:6px">多源数据</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">内部 / 公开 / 授权数据</p>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12)">
+        <span class="badge badge-amber" style="margin-bottom:6px">合规审查</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">隐私合规、版权合规</p>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.12)">
+        <span class="badge badge-green" style="margin-bottom:6px">冷启动</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">合成数据、众包数据</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 模型选择 -->
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div class="phase-num green" style="margin:0;width:36px;height:36px;min-width:36px;font-size:0.85rem">4</div>
+      <h2>模型选择</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="padding:12px;border-radius:10px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.12)">
+        <span class="badge badge-green" style="margin-bottom:6px">场景匹配</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">根据任务选择架构</p>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.12)">
+        <span class="badge badge-blue" style="margin-bottom:6px">预训练选型</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">预训练模型评估</p>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.12)">
+        <span class="badge badge-purple" style="margin-bottom:6px">对比实验</span>
+        <p style="font-size:0.82rem;color:var(--c3);margin:0">多模型对比验证</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="dev-nav.js"></script>
+</body>
+</html>

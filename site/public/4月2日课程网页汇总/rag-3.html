@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAG运转流程 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="3" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块</div>
+<h1 class="reveal d1 slide-title">RAG 的运转流程（技术）</h1>
+<p class="subtitle reveal d2">知识库构建（离线准备）</p>
+
+<div class="reveal d3" style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:32px 0">
+  <div class="flow-node accent" style="font-size:0.82rem;padding:14px 18px">📥 原始数据采集</div>
+  <div class="connector-line" style="min-width:30px;flex:0 0 30px"></div>
+  <div class="flow-node" style="font-size:0.82rem;padding:14px 18px">📄 文档解析</div>
+  <div class="connector-line" style="min-width:30px;flex:0 0 30px"></div>
+  <div class="flow-node" style="font-size:0.82rem;padding:14px 18px">🧹 数据清洗</div>
+  <div class="connector-line" style="min-width:30px;flex:0 0 30px"></div>
+  <div class="flow-node" style="font-size:0.82rem;padding:14px 18px">✂️ 文本分割</div>
+  <div class="connector-line" style="min-width:30px;flex:0 0 30px"></div>
+  <div class="flow-node" style="font-size:0.82rem;padding:14px 18px">🔢 文本向量化</div>
+  <div class="connector-line" style="min-width:30px;flex:0 0 30px"></div>
+  <div class="flow-node accent" style="font-size:0.82rem;padding:14px 18px">🗄️ 向量索引构建</div>
+</div>
+
+<div class="grid-3 reveal d4" style="gap:16px;margin-top:16px">
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--purple-l)">📥 原始数据采集</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">多数据源的聚合和筛选</p>
+  </div>
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--blue-l)">📄 文档解析</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">非结构化数据的可读化转化</p>
+  </div>
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--cyan-l)">🧹 数据清洗</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">剔除低质，统一格式</p>
+  </div>
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--green-l)">✂️ 文本分割</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">语义完整的"知识单元"拆分</p>
+  </div>
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--amber)">🔢 文本向量化</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">语言转化为向量</p>
+  </div>
+  <div class="card" style="padding:16px">
+    <h2 style="font-size:0.82rem;color:var(--rose)">🗄️ 向量索引构建</h2>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:6px">实现高效检索的"数据引擎"</p>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

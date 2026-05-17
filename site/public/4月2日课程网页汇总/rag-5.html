@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文档解析 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="5" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · Pipeline B</div>
+<h1 class="reveal d1 slide-title">Pipeline B：文档解析</h1>
+<p class="subtitle reveal d2">将"非机器可读格式"转化为"可编辑、可处理文本"</p>
+
+<div class="flow reveal d3" style="margin:28px 0">
+  <div class="flow-node" style="font-size:0.82rem">格式识别</div>
+  <div class="connector-line" style="min-width:40px;flex:0 0 40px"></div>
+  <div class="flow-node" style="font-size:0.82rem">格式分类</div>
+  <div class="connector-line" style="min-width:40px;flex:0 0 40px"></div>
+  <div class="flow-node" style="font-size:0.82rem">技术匹配</div>
+  <div class="connector-line" style="min-width:40px;flex:0 0 40px"></div>
+  <div class="flow-node accent" style="font-size:0.82rem">技术执行</div>
+</div>
+
+<table class="styled-table reveal d3">
+  <thead><tr><th>格式分类</th><th>技术工具</th><th>核心动作</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge badge-purple">图像/视频类</span></td><td>OCR / ASR</td><td>OCR 提取文本，ASR 转译文本</td></tr>
+    <tr><td><span class="badge badge-blue">结构化类</span></td><td>Pandas / JsonPath</td><td>提取字段，建立映射</td></tr>
+    <tr><td><span class="badge badge-cyan">半结构化类</span></td><td>pdfplumber / BeautifulSoup4</td><td>提取 PDF 表格、剥离网页标签</td></tr>
+    <tr><td><span class="badge badge-green">纯文本类</span></td><td>python-markdown</td><td>解析语法标记</td></tr>
+  </tbody>
+</table>
+
+<div class="card reveal d4" style="margin-top:24px">
+  <h2 style="margin-bottom:12px">📌 保留文档原生结构</h2>
+  <div class="grid-3" style="gap:12px">
+    <div style="padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--purple-l)">层级结构</strong><br>章节 → 标题层级</div>
+    <div style="padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--blue-l)">特殊元素</strong><br>表格 → 保留表头</div>
+    <div style="padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--cyan-l)">元数据关联</strong><br>来源、时间绑定</div>
+  </div>
+</div>
+
+<div class="card reveal d5" style="margin-top:16px;border-color:rgba(139,92,246,0.2)">
+  <h2 style="margin-bottom:12px">🎯 产品经理职责</h2>
+  <ol style="font-size:0.85rem;color:var(--c2);padding-left:20px;line-height:2">
+    <li>输出《文档解析质量标准》</li>
+    <li>协调业务文档管理员提供格式说明</li>
+    <li>定义解析后数据的输出格式</li>
+    <li>组织抽样校验，推动解决解析异常问题</li>
+  </ol>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

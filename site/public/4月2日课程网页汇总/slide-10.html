@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>少量样本ICL — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const tabs=document.getElementById('shot-tabs');
+  if(!tabs)return;
+  tabs.addEventListener('click',e=>{
+    const btn=e.target.closest('.tab-btn');if(!btn)return;
+    const idx=btn.dataset.tab;
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.dataset.idx===idx));
+  });
+});
+</script>
+</head>
+<body data-slide="10" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块三 · Prompt 技巧</div>
+<h1 class="reveal d1 slide-title">上下文学习 (ICL)</h1>
+<p class="subtitle reveal d2">通过示例引导模型输出——无需训练，即学即用</p>
+<div class="reveal d3">
+  <div class="tab-bar" id="shot-tabs">
+    <button class="tab-btn active" data-tab="0">零样本</button>
+    <button class="tab-btn" data-tab="1">单样本</button>
+    <button class="tab-btn" data-tab="2">多样本</button>
+  </div>
+  <div class="tab-panel active" data-idx="0">
+    <div class="card">
+      <span class="badge badge-purple" style="margin-bottom:12px">0个示例</span>
+      <p style="margin-bottom:12px;color:var(--c2)">直接给出任务指令，不提供任何示例</p>
+      <div class="code-block"><span class="label">零样本</span>将英语翻译为德语：<br><br>早餐(breakfast) => <strong style="color:var(--green-l)">Frühstück</strong></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-idx="1">
+    <div class="card">
+      <span class="badge badge-blue" style="margin-bottom:12px">1个示例</span>
+      <p style="margin-bottom:12px;color:var(--c2)">提供一个参考示例帮助模型理解格式</p>
+      <div class="code-block"><span class="label">单样本</span>猫 => Katze（德语）<br><br>早餐 => <strong style="color:var(--green-l)">Frühstück</strong></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-idx="2">
+    <div class="card">
+      <span class="badge badge-cyan" style="margin-bottom:12px">2-5个示例</span>
+      <p style="margin-bottom:12px;color:var(--c2)">多个示例让模型更准确地把握规律</p>
+      <div class="code-block"><span class="label">多样本 · 拼写纠错</span>gaot => goat（山羊）<br>sheo => shoe（鞋子）<br><br>pohne => <strong style="color:var(--green-l)">phone（电话）</strong></div>
+    </div>
+  </div>
+</div>
+<div class="card reveal d4" style="margin-top:24px;border-color:rgba(16,185,129,0.2);text-align:center">
+  <p style="color:var(--c2);font-size:0.88rem">💡 示例越相关、格式越统一，模型输出质量越高</p>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

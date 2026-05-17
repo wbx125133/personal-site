@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" seed="61"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.33"/>
+      </feComponentTransfer>
+    </filter>
+    <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#F3D4A8"/>
+      <stop offset="0.55" stop-color="#D4A574"/>
+      <stop offset="1" stop-color="#6d5436"/>
+    </radialGradient>
+    <radialGradient id="sky" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#171410"/>
+      <stop offset="1" stop-color="#030303"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="790" cy="460" r="210" fill="url(#moon)" opacity="0.95"/>
+  <g transform="translate(790 460)" fill="none" stroke="#1a1108" opacity="0.28">
+    <circle r="132"/>
+    <circle r="72"/>
+    <path d="M0-156v312M-156 0h312M-110-110 110 110M110-110-110 110"/>
+    <polygon points="0,-150 129,-75 129,75 0,150 -129,75 -129,-75"/>
+  </g>
+  <g opacity="0.52" filter="url(#noise)">
+    <rect width="1600" height="1000" fill="#fff"/>
+  </g>
+  <g fill="#050505" opacity="0.62">
+    <path d="M0 412c162-86 314-105 456-56 126 44 198 122 360 104 168-19 256-118 436-84 130 24 242 86 348 185v439H0z"/>
+    <path d="M0 260c118 36 228 48 330 36 176-22 282-112 456-90 176 22 260 150 438 128 124-15 244-84 376-206v-128H0z"/>
+  </g>
+  <rect width="1600" height="1000" fill="none" stroke="#D4A574" stroke-opacity="0.22" stroke-width="2"/>
+</svg>

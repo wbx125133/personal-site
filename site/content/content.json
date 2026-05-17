@@ -1,0 +1,121 @@
+{
+  "sections": [
+    { "id": "hero", "label": "HERO", "floor": "06" },
+    { "id": "about", "label": "ABOUT", "floor": "05" },
+    { "id": "work", "label": "WORK", "floor": "04" },
+    { "id": "thinking", "label": "THINKING", "floor": "03" },
+    { "id": "capability", "label": "CAPABILITY", "floor": "02" },
+    { "id": "contact", "label": "CONTACT", "floor": "01" }
+  ],
+  "hero": {
+    "name_zh": "王柏晰",
+    "name_en": "Silas Wang",
+    "title": "AI Product Manager",
+    "tagline": "让 AI 真正落地的人",
+    "journey": "2017 - 2026 · A 9-YEAR JOURNEY",
+    "cta": [
+      { "label": "下载简历", "href": "/resume.pdf" },
+      { "label": "公众号文章", "href": "https://www.woshipm.com/u/xxx" },
+      { "label": "联系我", "href": "#contact" }
+    ]
+  },
+  "about": [
+    {
+      "tab": "职业身份",
+      "highlights": [
+        "9 年大厂经验 · 百度 4 年 + 阿里 1 年",
+        "AI 产品负责人 @ 浙江日报传播大脑",
+        "纵跨媒体融合 · 跨境电商 · 智能车载"
+      ]
+    },
+    {
+      "tab": "专业能力",
+      "highlights": [
+        "AI 产品 0→1 全链路操盘",
+        "AIGC 评测体系搭建（架构层+业务层双层）",
+        "Multi-Agent 架构与编排",
+        "Vibe Coding 端到端独立交付"
+      ]
+    },
+    {
+      "tab": "个人侧写",
+      "highlights": [
+        "1995 · 杭州/上海",
+        "艺术科班出身的产品人（西北民族大学艺术本科）",
+        "在做：AI 玄学心理疗愈 Side Project「朝夕」",
+        "在想：AI Native 内容服务的下一种形态"
+      ]
+    }
+  ],
+  "work": [
+    {
+      "title": "潮新闻 AI 助手矩阵",
+      "role": "AI 产品负责人",
+      "period": "2024.12 - 至今",
+      "hook": "把传统媒体推进 AI Native 时代",
+      "metrics": ["AI 生成可用率 51% -> 92%", "新助手上线周期压缩 47%"],
+      "cover": "/images/work-chao.png",
+      "href": "#"
+    },
+    {
+      "title": "Urbanic AIGC 0->1",
+      "role": "AI 产品经理",
+      "period": "2022.08 - 2024.12",
+      "hook": "印度快时尚的端到端 AI 生产引擎",
+      "metrics": ["售卖单品数量 +50%", "年度成本降低约 350 万"],
+      "cover": "/images/work-urbanic.png",
+      "href": "#"
+    },
+    {
+      "title": "天猫 3D 商品力 · 心智频道",
+      "role": "高级 UX 设计师",
+      "period": "2021.03 - 2022.05",
+      "hook": "天猫互动玩法 × 心智频道方法论",
+      "metrics": ["会员产品策略", "商业转化路径优化"],
+      "cover": "/images/work-tmall.png",
+      "href": "#"
+    },
+    {
+      "title": "朝夕 · AI 玄学心理疗愈站",
+      "role": "Side Project · 独立全链路",
+      "period": "2026.02 - 2026.04",
+      "hook": "一个人跑完 PM/IDE 0->1 全链路",
+      "metrics": ["6 Subagent 架构", "四节律计算 <=100ms", "11 条 AI 红线"],
+      "cover": "/images/work-zhaoxi.svg",
+      "href": "/AI玄学社交_立项报告_幻灯片.html"
+    }
+  ],
+  "thinking": {
+    "articles": {
+      "title": "人人都是产品经理 · 首推长文",
+      "items": [
+        { "thumb": "/images/article-1.png", "href": "#" },
+        { "thumb": "/images/article-2.png", "href": "#" },
+        { "thumb": "/images/article-3.png", "href": "#" },
+        { "thumb": "/images/article-4.png", "href": "#" }
+      ]
+    },
+    "talks": {
+      "title": "受邀分享与课程",
+      "items": [
+        { "name": "功夫 UX · AI 产品专题分享", "href": "#" },
+        { "name": "AI 产品方法论课程（含 RAG / Agent / Prompt 工程）", "href": "/4月2日课程网页汇总/index.html" }
+      ]
+    }
+  },
+  "capability": {
+    "axes": [
+      { "label": "AI 产品策略", "value": 95, "note": "潮新闻四层架构 · Urbanic 三能力矩阵" },
+      { "label": "AIGC 评测", "value": 92, "note": "双层评测框架 · 8 维标准 · 部门 SOP" },
+      { "label": "Agent 架构", "value": 88, "note": "6 Subagent 编排 · ReAct + Function Calling" },
+      { "label": "Vibe Coding", "value": 85, "note": "Claude Code / Cursor / Codex / Windsurf 实战" },
+      { "label": "UX x PM 跨职能", "value": 90, "note": "9 年大厂双轨复合背景" }
+    ]
+  },
+  "contact": {
+    "email": "1349940796@qq.com",
+    "phone": "186-5880-9788",
+    "status": "离职 · 立即到岗 · 杭州/上海",
+    "slogan": "Think AI Native, Ship AI Native."
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prompt技巧 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="9" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块三 · Prompt 技巧</div>
+<h1 class="reveal d1 slide-title">Prompt 工程技巧</h1>
+<p class="subtitle reveal d2">四个立即可用的优化策略</p>
+<div class="grid-2 reveal d3" style="gap:24px;align-items:stretch">
+  <div class="side-card" style="border-left-color:var(--green);display:flex;flex-direction:column;height:100%">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span>🏗️</span><h2 style="margin:0">使用 Markdown 等结构化语法</h2></div>
+    <div class="code-block" style="font-size:0.75rem;margin:12px 0;flex:1"><span class="label">示例</span># 任务：撰写产品文案<br>## 产品：智能手表<br>## 要求：<br>- 200字以内<br>- 突出健康监测功能</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge badge-green">JSON</span><span class="badge badge-green">HTML</span><span class="badge badge-green">Markdown</span></div>
+  </div>
+  <div class="side-card" style="border-left-color:var(--blue);display:flex;flex-direction:column;height:100%">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span>✂️</span><h2 style="margin:0">直接表达，去掉客套</h2></div>
+    <div class="compare-bad" style="margin:12px 0 8px;padding:12px 16px;font-size:0.82rem"><div class="cl">❌</div>请问您能不能帮我查一下2024年诺贝尔物理学奖的得主是谁？</div>
+    <div class="compare-good" style="padding:12px 16px;font-size:0.82rem;margin-top:auto"><div class="cl">✅</div>2024年诺贝尔物理学奖得主是谁</div>
+  </div>
+  <div class="side-card" style="border-left-color:var(--cyan);display:flex;flex-direction:column;height:100%">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span>✅</span><h2 style="margin:0">正向描述，避免否定句</h2></div>
+    <div class="compare-bad" style="margin:12px 0 8px;padding:12px 16px;font-size:0.82rem"><div class="cl">❌</div>"别太长" / "不要太专业" / "不要不像人"</div>
+    <div class="compare-good" style="padding:12px 16px;font-size:0.82rem;margin-top:auto"><div class="cl">✅</div>"写一段150字以内的护手霜种草文案，口语化，像和闺蜜聊天"</div>
+  </div>
+  <div class="side-card" style="border-left-color:var(--purple);display:flex;flex-direction:column;height:100%">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span>🪜</span><h2 style="margin:0">引导分步思考</h2></div>
+    <div class="code-block" style="font-size:0.75rem;margin-top:12px;flex:1"><span class="label">分步引导</span>任务：设计电商AI客服Prompt模板<br>步骤1：梳理3个核心用户场景<br>步骤2：针对每个场景梳理需求<br>步骤3：设计Prompt模板(每个≤50字)</div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

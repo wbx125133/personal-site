@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>涌现能力详解 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="6" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块二 · 能力边界</div>
+<h1 class="reveal d1 slide-title">涌现能力详解</h1>
+<p class="subtitle reveal d2">三大核心涌现能力</p>
+<div class="grid-3 reveal d3" style="gap:24px">
+  <div class="card card-accent purple">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-size:1.5rem">📚</span><span class="badge badge-purple">上下文学习</span></div>
+    <h2>少样本上下文学习</h2>
+    <ul style="list-style:none;font-size:0.82rem;color:var(--c2);margin:8px 0 12px;line-height:1.8">
+      <li>• 零样本到少样本的跃迁</li>
+      <li>• 10B+ 参数时性能突变</li>
+    </ul>
+    <table class="styled-table">
+      <thead><tr><th>模型规模</th><th class="num">0-shot</th><th class="num">5-shot</th><th class="num">提升</th></tr></thead>
+      <tbody>
+        <tr><td>1B</td><td class="num">42%</td><td class="num">43%</td><td class="num">+1%</td></tr>
+        <tr><td>10B</td><td class="num">45%</td><td class="num">58%</td><td class="num">+13%</td></tr>
+        <tr><td>100B</td><td class="num">48%</td><td class="num">72%</td><td class="num value-up">+24%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card card-accent blue">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-size:1.5rem">🎯</span><span class="badge badge-blue">指令跟随</span></div>
+    <h2>指令跟随</h2>
+    <ul style="list-style:none;font-size:0.82rem;color:var(--c2);margin:8px 0 12px;line-height:1.8">
+      <li>• 100B+ 处理复杂指令</li>
+      <li>• 理解模糊指令的潜在意图</li>
+    </ul>
+    <table class="styled-table">
+      <thead><tr><th>指令复杂度</th><th class="num">小模型</th><th class="num">大模型</th></tr></thead>
+      <tbody>
+        <tr><td>单步简单</td><td class="num">85%</td><td class="num">92%</td></tr>
+        <tr><td>多步复合</td><td class="num">12%</td><td class="num value-up">76%</td></tr>
+        <tr><td>隐含意图</td><td class="num">3%</td><td class="num value-up">68%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card card-accent cyan">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-size:1.5rem">🧠</span><span class="badge badge-cyan">CoT</span></div>
+    <h2>思维链推理</h2>
+    <ul style="list-style:none;font-size:0.82rem;color:var(--c2);margin:8px 0 12px;line-height:1.8">
+      <li>• 50B+ 出现分步推理</li>
+      <li>• "Let's think step by step" 触发</li>
+    </ul>
+    <div class="code-block" style="font-size:0.75rem;line-height:1.7;margin-top:8px"><span class="label">思维链</span>Q: Roger has 5 tennis balls. He buys 2 cans of 3. How many now?<br><br>A: Let's think step by step.<br>Roger started with 5 balls.<br>2 cans of 3 = 6 balls.<br>5 + 6 = <strong style="color:var(--green-l)">11</strong>.</div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

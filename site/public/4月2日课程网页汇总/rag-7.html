@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文本向量化与索引构建 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="7" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · Pipeline E & F</div>
+<h1 class="reveal d1 slide-title">文本向量化 & 向量索引构建</h1>
+<p class="subtitle reveal d2">Pipeline E：语言→向量 &nbsp;|&nbsp; Pipeline F：构建检索引擎</p>
+
+<div class="grid-2 reveal d3" style="gap:24px;align-items:start">
+  <div class="card card-accent purple">
+    <h2 style="color:var(--purple-l);margin-bottom:16px">🔢 Pipeline E：文本向量化</h2>
+    <p style="font-size:0.85rem;color:var(--c2);margin-bottom:16px">把文本转化为高维向量坐标</p>
+    <div class="code-block" style="font-size:0.78rem;line-height:1.8"><span class="label">向量示例</span>狗 &nbsp; → [0.12, -0.45, 0.89, ...]<br>兔子 → [0.15, -0.42, 0.85, ...]<br>花 &nbsp; → [-0.78, 0.11, -0.23, ...]</div>
+    <div style="margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);font-size:0.82rem;color:var(--c2)">
+      <strong style="color:var(--purple-l)">相似语义 = 向量距离更近</strong><br>
+      度量方式：欧氏距离、余弦相似度
+    </div>
+  </div>
+
+  <div class="card card-accent cyan">
+    <h2 style="color:var(--cyan-l);margin-bottom:16px">🗄️ Pipeline F：向量索引构建</h2>
+    <p style="font-size:0.85rem;color:var(--c2);margin-bottom:16px">根据业务需求选择合适的索引算法</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="padding:14px 16px;border-radius:10px;background:var(--surface-1);border:1px solid var(--border)">
+        <div style="font-size:0.82rem;margin-bottom:6px"><strong style="color:var(--cyan-l)">向量数据库</strong> · 模糊匹配</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge badge-cyan">FAISS</span><span class="badge badge-cyan">Pinecone</span><span class="badge badge-cyan">Weaviate</span></div>
+      </div>
+      <div style="padding:14px 16px;border-radius:10px;background:var(--surface-1);border:1px solid var(--border)">
+        <div style="font-size:0.82rem;margin-bottom:6px"><strong style="color:var(--blue-l)">常规数据库</strong> · 精准匹配</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge badge-blue">MySQL</span><span class="badge badge-blue">MongoDB</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card reveal d4" style="margin-top:24px;border-color:rgba(139,92,246,0.2)">
+  <h2 style="margin-bottom:12px">🎯 产品经理职责</h2>
+  <div class="grid-2" style="gap:16px">
+    <ol style="font-size:0.85rem;color:var(--c2);padding-left:20px;line-height:2">
+      <li>评估不同模型的效果和成本，输出选型建议</li>
+      <li>制定向量质量监控指标（相似度、稳定性）</li>
+      <li>协调各方资源</li>
+    </ol>
+    <div style="font-size:0.82rem;color:var(--c3)">
+      <p style="margin-bottom:6px"><strong style="color:var(--c2)">协作对象：</strong></p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge badge-purple">算法工程师</span><span class="badge badge-blue">运维人员</span><span class="badge badge-cyan">财务</span><span class="badge badge-green">数据工程师</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

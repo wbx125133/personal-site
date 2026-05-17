@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大模型的局限性 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="2" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块</div>
+<h1 class="reveal d1 slide-title">大模型的局限性</h1>
+<p class="subtitle reveal d2">四大痛点与三种解决方案</p>
+
+<div class="grid-4 reveal d3" style="gap:16px;margin-bottom:32px">
+  <div class="card" style="text-align:center;padding:16px">
+    <span style="font-size:1.5rem">⏰</span>
+    <h2 style="font-size:0.85rem;margin-top:8px">时效性差</h2>
+  </div>
+  <div class="card" style="text-align:center;padding:16px">
+    <span style="font-size:1.5rem">🌀</span>
+    <h2 style="font-size:0.85rem;margin-top:8px">模型幻觉</h2>
+  </div>
+  <div class="card" style="text-align:center;padding:16px">
+    <span style="font-size:1.5rem">🔍</span>
+    <h2 style="font-size:0.85rem;margin-top:8px">来源不透明</h2>
+  </div>
+  <div class="card" style="text-align:center;padding:16px">
+    <span style="font-size:1.5rem">🏢</span>
+    <h2 style="font-size:0.85rem;margin-top:8px">无私有化</h2>
+  </div>
+</div>
+
+<div class="grid-3 reveal d3" style="gap:24px">
+  <div class="side-card" style="border-left-color:var(--blue)">
+    <h2>方案一：模型微调 (SFT)</h2>
+    <div style="margin-top:12px;font-size:0.82rem;color:var(--c2)">
+      <p><span style="color:var(--green-l)">✓</span> 响应快，不仅限于知识</p>
+      <p style="margin-top:6px"><span style="color:var(--rose)">✗</span> 成本高、更新难、效果不可控</p>
+    </div>
+  </div>
+  <div class="side-card" style="border-left-color:var(--cyan)">
+    <h2>方案二：超长提示词</h2>
+    <div style="margin-top:12px;font-size:0.82rem;color:var(--c2)">
+      <p><span style="color:var(--green-l)">✓</span> 简单直接</p>
+      <p style="margin-top:6px"><span style="color:var(--rose)">✗</span> 不可扩展、受限窗口、成本高</p>
+    </div>
+  </div>
+  <div class="side-card" style="border-left-color:var(--purple);background:rgba(139,92,246,0.06)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+      <h2>方案三：RAG</h2>
+      <span class="badge badge-purple">最优解</span>
+    </div>
+    <div style="margin-top:12px;font-size:0.82rem;color:var(--c2)">
+      <p><span style="color:var(--green-l)">✓</span> 知识可更新、来源可追溯</p>
+      <p style="margin-top:6px"><span style="color:var(--green-l)">✓</span> 成本低、私有化部署</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大模型局限性 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="7" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块二 · 能力边界</div>
+<h1 class="reveal d1 slide-title">大模型的局限性</h1>
+<p class="subtitle reveal d2">了解边界才能更好地使用</p>
+<div class="grid-2 reveal d3" style="gap:24px">
+  <div class="side-card" style="border-left-color:var(--purple)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:1.2rem">⏰</span><h2 style="margin:0">时效性限制</h2></div>
+    <p style="color:var(--c2);font-size:0.88rem">训练数据有截止日期，无法获取最新信息</p>
+    <p class="small" style="margin-top:8px">例：询问今天的新闻或最新的股价信息</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--blue)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:1.2rem">🌀</span><h2 style="margin:0">模型幻觉</h2></div>
+    <p style="color:var(--c2);font-size:0.88rem">生成看似合理但实际错误的内容，且表述自信</p>
+    <p class="small" style="margin-top:8px">例：编造不存在的论文引用或虚假统计数据</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--cyan)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:1.2rem">🔬</span><h2 style="margin:0">专业深度不足</h2></div>
+    <p style="color:var(--c2);font-size:0.88rem">通用训练数据在特定专业领域可能缺乏深度</p>
+    <p class="small" style="margin-top:8px">例：复杂的医学诊断或尖端科研分析</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--rose)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:1.2rem">🛡️</span><h2 style="margin:0">安全与偏见</h2></div>
+    <p style="color:var(--c2);font-size:0.88rem">可能生成有害、偏见或不当内容</p>
+    <p class="small" style="margin-top:8px">例：训练数据中的社会偏见可能被放大</p>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

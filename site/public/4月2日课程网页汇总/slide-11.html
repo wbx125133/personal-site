@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>协作四象限概览 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="11" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块四 · 人机协作</div>
+<h1 class="reveal d1 slide-title">人与AI的协作模型</h1>
+<p class="subtitle reveal d2">基于乔哈里视窗的人机协作框架</p>
+<div class="grid-2 reveal d3" style="gap:32px;align-items:start">
+  <div>
+    <div class="quote-block" style="margin-bottom:24px">乔哈里视窗 (Johari Window) 是关于沟通的经典理论框架，将人际沟通的信息比作窗子，分为四个区域。我们将其映射到人与AI的协作关系中。</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:var(--purple);flex-shrink:0"></span><span style="font-size:0.85rem;color:var(--c2)"><strong style="color:var(--c1)">公开象限</strong> — 自己知道 × 他人知道</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:var(--blue);flex-shrink:0"></span><span style="font-size:0.85rem;color:var(--c2)"><strong style="color:var(--c1)">隐私象限</strong> — 自己知道 × 他人不知道</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:var(--cyan);flex-shrink:0"></span><span style="font-size:0.85rem;color:var(--c2)"><strong style="color:var(--c1)">盲点象限</strong> — 自己不知道 × 他人知道</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:var(--green);flex-shrink:0"></span><span style="font-size:0.85rem;color:var(--c2)"><strong style="color:var(--c1)">潜能象限</strong> — 自己不知道 × 他人不知道</span></div>
+    </div>
+  </div>
+  <div>
+    <p class="axis-label">自我提示 →</p>
+    <div class="quadrant">
+      <div class="q-cell q1"><h2>公开象限</h2><p>自己知道 × 他人知道</p></div>
+      <div class="q-cell q2" style="background:rgba(59,130,246,0.08)"><h2>隐私象限</h2><p>自己知道 × 他人不知道</p></div>
+      <div class="q-cell q3" style="background:rgba(6,182,212,0.08)"><h2>盲点象限</h2><p>自己不知道 × 他人知道</p></div>
+      <div class="q-cell q4" style="background:rgba(16,185,129,0.08)"><h2>潜能象限</h2><p>自己不知道 × 他人不知道</p></div>
+    </div>
+    <p class="axis-label">↓ 恳请反馈</p>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>检索策略与增强 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="10" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · 检索与增强</div>
+<h1 class="reveal d1 slide-title">检索策略与增强（Augmented）</h1>
+<p class="subtitle reveal d2">精准检索 + 结果增强 = 高质量上下文</p>
+
+<div class="grid-2 reveal d3" style="gap:24px;align-items:stretch;margin-bottom:28px">
+  <!-- 检索策略 -->
+  <div style="display:flex;flex-direction:column">
+    <h2 style="margin-bottom:16px;color:var(--purple-l)">🔍 检索策略</h2>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+        <span class="badge badge-purple">混合检索</span>
+        <span class="badge badge-blue">结构化检索</span>
+        <span class="badge badge-cyan">以小搜大</span>
+        <span class="badge badge-green">精排</span>
+      </div>
+      <div class="flow" style="gap:6px;flex-wrap:wrap;font-size:0.82rem">
+        <span style="color:var(--c2)">相关信息</span>
+        <span style="color:var(--c4)">→</span>
+        <span style="color:var(--c2)">LLM 过滤</span>
+        <span style="color:var(--c4)">→</span>
+        <span style="color:var(--c2)">结果后处理</span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(139,92,246,0.2);flex:1">
+      <h2 style="font-size:0.88rem;margin-bottom:8px">重排模型（Reranker）</h2>
+      <p style="font-size:0.82rem;color:var(--c2)">对初步检索的结果进行重新排序，提升相关性</p>
+    </div>
+  </div>
+
+  <!-- 面试真题 -->
+  <div style="display:flex;flex-direction:column">
+    <h2 style="margin-bottom:16px;color:var(--cyan-l)">💼 面试真题</h2>
+    <div class="side-card" style="border-left-color:var(--purple);flex:1">
+      <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+      <h2 style="font-size:0.88rem;margin-bottom:12px">RAG 中怎么去做的搜比过程？</h2>
+      <div class="code-block" style="font-size:0.78rem;line-height:1.8"><span class="label">参考答案</span>chunk 拿去做<strong style="color:var(--purple-l)">三路检索</strong>（稠密检索 + 稀疏检索）<br>→ 用 <strong style="color:var(--blue-l)">Top-K + cosine 相似度</strong>筛选<br>→ 二路合并后做一轮<strong style="color:var(--cyan-l)">精排重排</strong><br>→ 最终把主题最相关的文本片段交付生成</div>
+    </div>
+  </div>
+</div>
+
+<h2 class="reveal d4" style="margin-bottom:16px;color:var(--green-l)">⚡ 增强（Augmented）</h2>
+<p class="reveal d4" style="font-size:0.85rem;color:var(--c3);margin-bottom:16px">多路召回结果的合并与增强方案</p>
+
+<div class="reveal d4" style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+  <span class="badge badge-purple">文本片段</span>
+  <span class="badge badge-blue">标签（如时间）</span>
+  <span class="badge badge-cyan">指标（精确度/召回率）</span>
+  <span class="badge badge-green">排序</span>
+</div>
+
+<table class="styled-table reveal d4">
+  <thead><tr><th>维度</th><th>增强方法 A</th><th>增强方法 B</th></tr></thead>
+  <tbody>
+    <tr><td><strong style="color:var(--purple-l)">结果合并</strong></td><td>基于排序的合并</td><td>基于主题的聚类</td></tr>
+    <tr><td><strong style="color:var(--blue-l)">内容增强</strong></td><td>提供精确答案和相关段落</td><td>子问题拆解与多轮检索</td></tr>
+    <tr><td><strong style="color:var(--cyan-l)">内容摘要</strong></td><td>对子检索结果做压缩</td><td>完整段落保留</td></tr>
+    <tr><td><strong style="color:var(--green-l)">上下文拼接</strong></td><td>将多段检索内容拼接到 Prompt</td><td>按相关性排序拼接</td></tr>
+    <tr><td><strong style="color:var(--amber)">查询路由增强</strong></td><td>意图分类后走不同检索路径</td><td>统一检索路径</td></tr>
+    <tr><td><strong style="color:var(--rose)">自我反思增强</strong></td><td>基于初次结果反思再检索</td><td>一次检索完成</td></tr>
+  </tbody>
+</table>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大模型训练三阶段 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="2" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块一 · 底层原理</div>
+<h1 class="reveal d1 slide-title">大模型训练三阶段</h1>
+<p class="subtitle reveal d2">训练一个 ChatGPT 要经过三大步，就像培养一个员工：先上学、再实习、最后上岗培训</p>
+
+<!-- 三阶段卡片 -->
+<div class="reveal d3" style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch">
+
+  <!-- ===== 阶段 1 ===== -->
+  <div class="card card-accent purple" style="display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div class="phase-num purple" style="margin:0;width:40px;height:40px;min-width:40px;font-size:0.9rem">1</div>
+      <div>
+        <h2 style="color:var(--purple-l);margin:0;font-size:var(--font-lg)">📐 构建模型</h2>
+        <p style="font-size:11px;color:var(--c3);margin-top:2px">设计图纸阶段</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--c3);margin-bottom:4px;font-weight:600">阶段目标：决定模型长什么样</p>
+    <!-- 类比说明 -->
+    <div style="background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.12);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px">
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7">就像建房子之前先画设计图。要决定：模型有多大（参数量）、结构怎么搭（多少层注意力）、用什么数据来训练</p>
+    </div>
+    <!-- 步骤 -->
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--c2);line-height:1.7;flex:1">
+      <div><strong style="color:var(--c1)">① 数据准备</strong><br><span style="color:rgba(255,255,255,0.5)">从互联网上收集海量文本：网页、书籍、论文、代码…… 清洗掉垃圾数据。GPT-3 用了约 45TB 的文本</span></div>
+      <div><strong style="color:var(--c1)">② 架构设计</strong><br><span style="color:rgba(255,255,255,0.5)">决定用多少层 Transformer、多少个注意力头、向量维度多大。GPT-3 有 1750 亿个参数</span></div>
+      <div><strong style="color:var(--c1)">③ 确定训练计划</strong><br><span style="color:rgba(255,255,255,0.5)">要用多少张 GPU、训练多少轮、学习率怎么调。大模型训练一次可能花费几百万美元</span></div>
+    </div>
+    <!-- 产出 -->
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+      <span class="badge badge-purple">→ 产出：空白模型</span>
+      <p style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px">就像一个聪明但什么都不知道的大脑</p>
+    </div>
+  </div>
+
+  <!-- 箭头 1→2 -->
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;gap:4px">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);writing-mode:vertical-lr;letter-spacing:0.1em">产出传递</div>
+    <div style="width:2px;height:24px;background:linear-gradient(180deg,rgba(139,92,246,0.4),rgba(59,130,246,0.4))"></div>
+    <div style="font-size:1.2rem;color:rgba(139,92,246,0.5)">→</div>
+    <div style="width:2px;height:24px;background:linear-gradient(180deg,rgba(59,130,246,0.4),rgba(6,182,212,0.4))"></div>
+  </div>
+
+  <!-- ===== 阶段 2 ===== -->
+  <div class="card card-accent blue" style="display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div class="phase-num blue" style="margin:0;width:40px;height:40px;min-width:40px;font-size:0.9rem">2</div>
+      <div>
+        <h2 style="color:var(--blue-l);margin:0;font-size:var(--font-lg)">📚 预训练</h2>
+        <p style="font-size:11px;color:var(--c3);margin-top:2px">上学读书阶段</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--c3);margin-bottom:4px;font-weight:600">阶段目标：让模型学会人类语言的基本规律</p>
+    <!-- 类比说明 -->
+    <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.12);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px">
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7">相当于让模型"读"几乎整个互联网的文字。训练方式很简单——挡住下一个词，让模型猜，猜错了就调整。读了万亿个词之后，模型就学会了语法、常识、逻辑</p>
+    </div>
+    <!-- 步骤 -->
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--c2);line-height:1.7;flex:1">
+      <div><strong style="color:var(--c1)">④ 自监督学习</strong><br><span style="color:rgba(255,255,255,0.5)">不需要人工标注，模型自己出题自己做。任务就是：给前面的词，预测下一个词（就是自回归）</span></div>
+      <div><strong style="color:var(--c1)">⑤ 训练循环</strong><br><span style="color:rgba(255,255,255,0.5)">重复几十万次：预测→对答案→算误差→调参数。用几千张 GPU 跑几个月</span></div>
+      <div><strong style="color:var(--c1)">⑥ 模型评估</strong><br><span style="color:rgba(255,255,255,0.5)">看看模型的语言能力：能不能续写文章？能不能回答知识问题？</span></div>
+    </div>
+    <!-- 产出 -->
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+      <span class="badge badge-blue">→ 产出：基础模型</span>
+      <p style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px">能说人话，但不太听话，可能输出有害内容</p>
+      <p style="font-size:11px;color:var(--c4);margin-top:2px">例：GPT-3、LLaMA 基础版</p>
+    </div>
+  </div>
+
+  <!-- 箭头 2→3 -->
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;gap:4px">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);writing-mode:vertical-lr;letter-spacing:0.1em">产出传递</div>
+    <div style="width:2px;height:24px;background:linear-gradient(180deg,rgba(59,130,246,0.4),rgba(6,182,212,0.4))"></div>
+    <div style="font-size:1.2rem;color:rgba(59,130,246,0.5)">→</div>
+    <div style="width:2px;height:24px;background:linear-gradient(180deg,rgba(6,182,212,0.4),rgba(16,185,129,0.4))"></div>
+  </div>
+
+  <!-- ===== 阶段 3 ===== -->
+  <div class="card card-accent green" style="display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div class="phase-num green" style="margin:0;width:40px;height:40px;min-width:40px;font-size:0.9rem">3</div>
+      <div>
+        <h2 style="color:var(--green-l);margin:0;font-size:var(--font-lg)">🎓 微调对齐</h2>
+        <p style="font-size:11px;color:var(--c3);margin-top:2px">岗前培训阶段</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--c3);margin-bottom:4px;font-weight:600">阶段目标：让模型变得有用、安全、听话</p>
+    <!-- 类比说明 -->
+    <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.12);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px">
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7">预训练后的模型就像读了很多书但没有工作经验的毕业生。微调就是岗前培训：教它好好回答问题、拒绝不当请求、按人类喜好输出</p>
+    </div>
+    <!-- 步骤 -->
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--c2);line-height:1.7;flex:1">
+      <div><strong style="color:var(--c1)">⑦ SFT 监督微调</strong><br><span style="color:rgba(255,255,255,0.5)">人工写几万条高质量"问答"示范，让模型照着学。学完后模型就知道怎么好好回答问题了</span></div>
+      <div><strong style="color:var(--c1)">⑧ RLHF 人类反馈强化学习</strong><br><span style="color:rgba(255,255,255,0.5)">让模型生成多个回答，人类标注员给回答排名，用排名训练"打分模型"，再指导大模型优化。简单说：人类当教练，不断告诉模型"这样说更好"</span></div>
+    </div>
+    <!-- 产出 -->
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+      <span class="badge badge-green">→ 产出：对齐模型</span>
+      <p style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px">就是你用的 ChatGPT / Claude</p>
+      <p style="font-size:11px;color:var(--c4);margin-top:2px">例：ChatGPT = GPT-4 基础模型 + SFT + RLHF</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- 底部总结 -->
+<div class="quote-block reveal d4" style="margin-top:var(--space-lg);text-align:center">
+  一句话总结：<strong style="color:var(--purple-l)">海量数据</strong> → <strong style="color:var(--blue-l)">学会语言</strong> → <strong style="color:var(--green-l)">学会做人</strong>。三步走完，一个 AI 助手就诞生了。
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

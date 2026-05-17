@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据清洗与文本分割 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="6" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · Pipeline C & D</div>
+<h1 class="reveal d1 slide-title">数据清洗 & 文本分割</h1>
+<p class="subtitle reveal d2">Pipeline C：保留语义核心 &nbsp;|&nbsp; Pipeline D：语义边界优先</p>
+
+<div class="grid-2 reveal d3" style="gap:24px;align-items:start">
+  <div class="card card-accent blue">
+    <h2 style="color:var(--blue-l);margin-bottom:16px">🧹 Pipeline C：数据清洗</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-bottom:12px">核心：保留语义核心，剔除无关信息</p>
+    <div class="flow" style="gap:6px;margin-bottom:16px;flex-wrap:wrap">
+      <span class="badge badge-blue">剔除冗余</span><span style="color:var(--c4)">→</span>
+      <span class="badge badge-blue">内容改写</span><span style="color:var(--c4)">→</span>
+      <span class="badge badge-blue">格式标准化</span><span style="color:var(--c4)">→</span>
+      <span class="badge badge-blue">敏感过滤</span>
+    </div>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:0.82rem;color:var(--c2)">
+      <li>• 剔除 OCR 识别残留乱码</li>
+      <li>• 修正格式错误、合并断裂语句</li>
+      <li>• 自动校验 + 人工抽样</li>
+      <li>• 异常处理与日志记录</li>
+    </ul>
+  </div>
+
+  <div class="card card-accent cyan">
+    <h2 style="color:var(--cyan-l);margin-bottom:16px">✂️ Pipeline D：文本分割</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-bottom:12px">核心：语义边界优先，长度适配模型</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <span class="badge badge-cyan">语义完整性</span>
+      <span class="badge badge-cyan">长度适配</span>
+      <span class="badge badge-cyan">重叠窗口</span>
+    </div>
+    <p style="font-size:0.78rem;color:var(--c3);margin-top:8px">📎 相邻 Chunk 设置 10%-20% 重叠内容，避免语义丢失</p>
+  </div>
+</div>
+
+<h2 class="reveal d4" style="margin-top:28px;margin-bottom:12px">六大分割策略</h2>
+<table class="styled-table reveal d4">
+  <thead><tr><th>策略</th><th>方式</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td><strong style="color:var(--purple-l)">固定长度</strong></td><td>按字符数/Token 数</td><td>如 500 字符/200 Token，支持 10%-20% 重叠窗口</td></tr>
+    <tr><td><strong style="color:var(--blue-l)">语义感知</strong></td><td>NLP 模型识别边界</td><td>基于 BERT、spaCy 识别语义边界</td></tr>
+    <tr><td><strong style="color:var(--cyan-l)">文档结构</strong></td><td>按原生结构</td><td>PDF 章节、Markdown 标题标识</td></tr>
+    <tr><td><strong style="color:var(--green-l)">关键词/主题</strong></td><td>术语聚类</td><td>基于专业术语、主题词聚类切割</td></tr>
+    <tr><td><strong style="color:var(--amber)">多粒度</strong></td><td>双层分割</td><td>先拆"大结构"再拆"子 Chunk"</td></tr>
+    <tr><td><strong style="color:var(--rose)">混合分装</strong></td><td>融合多策略</td><td>组合以上多种策略</td></tr>
+  </tbody>
+</table>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

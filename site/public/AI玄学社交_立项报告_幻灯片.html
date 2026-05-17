@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 玄学社交产品 · 立项报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F4EF;
+  --bg-card: #FFFFFF;
+  --bg-dark: #100F09;
+  --text-1: #100F09;
+  --text-2: #656262;
+  --text-3: #929290;
+  --border: #E5E3DC;
+  --accent: #E3FF74;
+  --accent-hover: #D4F056;
+  --red: #E74D3C;
+  --red-bg: #FCE8E6;
+  --green: #57C74A;
+  --green-bg: #E5FFDE;
+  --font: 'Inter Tight', -apple-system, 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --transition: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-1);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 幻灯片容器 ========== */
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  overflow-y: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+}
+
+.slide-inner {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ========== 通用元素 ========== */
+.label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+}
+
+.label.accent {
+  background: var(--accent);
+  color: var(--text-1);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.label.red {
+  background: var(--red-bg);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 800px;
+}
+
+.highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+.highlight::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 2px;
+  height: 60%;
+  background: var(--accent);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+/* ========== 封面页 ========== */
+.cover .slide-wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cover .slide-inner {
+  max-width: 1200px;
+}
+
+.cover .badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-1);
+  background: var(--accent);
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 48px;
+  font-family: var(--font-mono);
+}
+
+.cover h1 {
+  font-size: 112px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -4px;
+  margin-bottom: 32px;
+}
+
+.cover h1 .line2 {
+  color: var(--text-2);
+  font-weight: 700;
+}
+
+.cover .subtitle {
+  font-size: 20px;
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.cover .meta {
+  display: flex;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.cover .meta span {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.cover .meta strong {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-right: 6px;
+}
+
+/* ========== 卡片组 ========== */
+.cards-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.cards-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: var(--transition);
+}
+
+.card .num {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--text-1);
+  background: var(--accent);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.card p + p {
+  margin-top: 10px;
+}
+
+.card.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.card.featured .num {
+  background: var(--text-1);
+  color: var(--accent);
+}
+.card.featured p {
+  color: var(--text-1);
+}
+
+.card.dark {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: #FFFFFF;
+}
+.card.dark h3 { color: #FFFFFF; }
+.card.dark p { color: #929290; }
+
+/* ========== 九宫格矩阵 ========== */
+.matrix-3x3 {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr);
+  grid-template-rows: 40px repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 24px;
+  min-height: 360px;
+}
+
+.matrix-3x3 .axis-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.matrix-3x3 .row-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.matrix-3x3 .cell {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.matrix-3x3 .cell .cell-tag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+}
+
+.matrix-3x3 .cell .cell-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.matrix-3x3 .cell.target {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.matrix-3x3 .cell.target .cell-name {
+  color: var(--text-1);
+  font-weight: 700;
+}
+
+.matrix-3x3 .cell.target .cell-tag {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.matrix-3x3 .cell.p1 {
+  background: #FAF9ED;
+  border-color: #EDE8B8;
+}
+
+.matrix-3x3 .cell.p2 {
+  background: #F5F4EF;
+  color: var(--text-3);
+}
+
+.matrix-3x3 .cell.p2 .cell-name {
+  color: var(--text-3);
+}
+
+.strategy-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.strategy-row .pill {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+}
+
+.strategy-row .pill.p0 {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* ========== 画像页 ========== */
+.persona-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.persona-header .persona-title-group {
+  flex: 1;
+}
+
+.persona-header .persona-id {
+  display: inline-block;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 1.5px;
+  color: var(--text-2);
+  padding: 4px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.persona-header h2 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.persona-header .persona-tagline {
+  font-size: 15px;
+  color: var(--text-2);
+  font-style: italic;
+  max-width: 600px;
+}
+
+.persona-avatar {
+  font-size: 48px;
+  padding-left: 24px;
+}
+
+.persona-cards {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 16px;
+}
+
+.persona-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.persona-card.wide {
+  grid-column: span 1;
+}
+
+.persona-card h4 {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 1.5px;
+  color: var(--text-1);
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.persona-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.persona-card ul li {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-2);
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.persona-card ul li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  font-size: 18px;
+  color: var(--text-1);
+}
+
+.persona-card.insight {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.persona-card.insight h4 {
+  color: var(--text-1);
+  border-bottom-color: rgba(0,0,0,0.15);
+}
+
+.persona-card.insight p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-1);
+}
+
+.persona-card .point-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.persona-card .point-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ========== 对比双栏 ========== */
+.compare-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.compare-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+
+.compare-card.dark {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: #FFFFFF;
+}
+
+.compare-card .icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.compare-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.compare-card.dark h3 { color: #FFFFFF; }
+
+.compare-card .flow-step {
+  font-size: 14px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: var(--text-2);
+}
+
+.compare-card.dark .flow-step {
+  background: #1a1a1a;
+  color: #c2c2c2;
+}
+
+.compare-card p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.compare-card.dark p { color: #c2c2c2; }
+
+.compare-card strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+.compare-card.dark strong { color: #FFFFFF; }
+
+/* ========== 横向流程 ========== */
+.flow-3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.flow-box {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.flow-box.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.flow-box h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.flow-box .flow-value {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+
+.flow-box p {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.flow-box.featured h4,
+.flow-box.featured p {
+  color: var(--text-1);
+}
+
+.flow-arrow {
+  font-size: 24px;
+  color: var(--text-3);
+}
+
+/* ========== MVP 列表 ========== */
+.mvp-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mvp-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.mvp-item.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.mvp-item .mvp-num {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-1);
+  line-height: 1;
+}
+
+.mvp-item.featured .mvp-num {
+  color: var(--text-1);
+}
+
+.mvp-item .mvp-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.mvp-item .mvp-value {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.mvp-item.featured .mvp-value {
+  color: var(--text-1);
+}
+
+/* ========== 风险卡片 ========== */
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.risk-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.risk-card .risk-level {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.risk-card.critical .risk-level {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.risk-card.high .risk-level {
+  background: #FFF4E0;
+  color: #D97706;
+}
+
+.risk-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.risk-card p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.risk-card strong {
+  color: var(--text-1);
+}
+
+/* ========== 应对策略 ========== */
+.strategy-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.strategy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.strategy-card.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.strategy-card .strat-num {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  background: var(--text-1);
+  color: #FFFFFF;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+}
+
+.strategy-card.featured .strat-num {
+  background: var(--text-1);
+  color: var(--accent);
+}
+
+.strategy-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.strategy-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.strategy-card ul li {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-2);
+  padding-left: 12px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.strategy-card.featured ul li {
+  color: var(--text-1);
+}
+
+.strategy-card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+/* ========== Week 卡片(行动计划) ========== */
+.week-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.week-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.week-card.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.week-card .week-num {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  background: var(--text-1);
+  color: #FFFFFF;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+}
+
+.week-card.featured .week-num {
+  background: var(--text-1);
+  color: var(--accent);
+}
+
+.week-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.week-card .week-goal {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  font-style: italic;
+}
+
+.week-card.featured .week-goal {
+  color: var(--text-1);
+  border-bottom-color: rgba(0,0,0,0.15);
+}
+
+.week-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.week-card ul li {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--text-2);
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.week-card.featured ul li {
+  color: var(--text-1);
+}
+
+.week-card ul li::before {
+  content: '□';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* ========== 服务/不服务对比 ========== */
+.serve-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.serve-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.serve-card.do {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.serve-card.do .serve-header {
+  color: var(--text-1);
+}
+
+.serve-card.dont {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: #FFFFFF;
+}
+
+.serve-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-family: var(--font-mono);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.serve-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.serve-card.dont h3 { color: #FFFFFF; }
+
+.serve-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.serve-card.dont .serve-item {
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+
+.serve-item:last-child { border-bottom: none; }
+
+.serve-item .serve-name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-1);
+}
+
+.serve-card.dont .serve-item .serve-name {
+  color: #FFFFFF;
+}
+
+.serve-item .serve-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.serve-card.dont .serve-item .serve-desc {
+  color: #929290;
+}
+
+.strategy-line {
+  margin-top: 28px;
+  padding: 20px 28px;
+  background: var(--bg-dark);
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.strategy-line .highlight::before {
+  bottom: 0;
+}
+
+/* ========== 商业模式页 ========== */
+.biz-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.biz-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+
+.biz-card.featured {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.biz-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.biz-card.featured h3 {
+  border-bottom-color: rgba(0,0,0,0.15);
+}
+
+.biz-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.biz-card.featured .biz-row {
+  border-bottom-color: rgba(0,0,0,0.15);
+}
+
+.biz-row:last-child { border-bottom: none; }
+
+.biz-row .biz-label {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.biz-card.featured .biz-row .biz-label {
+  color: var(--text-1);
+}
+
+.biz-row .biz-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-1);
+  font-family: var(--font-mono);
+}
+
+/* ========== 结尾页 ========== */
+.ending .slide-wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.ending h2 {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 32px;
+}
+
+.ending p {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* ========== 底部导航 ========== */
+.nav {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background: var(--bg-dark);
+  color: #FFFFFF;
+  border-radius: 100px;
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.nav button {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 200ms;
+}
+
+.nav button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.nav .page-info {
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 100;
+  transition: width var(--transition);
+}
+
+.brand {
+  position: fixed;
+  top: 32px;
+  right: 48px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: 99;
+}
+
+.brand.show { opacity: 1; }
+
+/* ========== 响应式 ========== */
+@media (max-width: 900px) {
+  .slide-wrapper { padding: 40px 24px; }
+  .title { font-size: 32px; }
+  .cover h1 { font-size: 56px; }
+  .ending h2 { font-size: 40px; }
+  .cards-2, .cards-3, .cards-4,
+  .compare-2, .serve-compare, .biz-compare,
+  .week-compare, .risk-cards, .strategy-cards,
+  .persona-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .flow-3 { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+  .matrix-3x3 {
+    grid-template-columns: 60px repeat(3, 1fr);
+  }
+  .mvp-item {
+    grid-template-columns: 60px 1fr;
+  }
+  .mvp-item .mvp-value {
+    grid-column: span 2;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="brand">AI Mystic Social · Pitch Deck</div>
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+<!-- ========== 页 1 · 封面 ========== -->
+<section class="slide active cover">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="badge">Project Proposal · 2026</span>
+    <h1>AI 玄学社交<br><span class="line2">用<span class="highlight">命运叙事</span>打开连接</span></h1>
+    <p class="subtitle">帮助想要找对象 / 找搭子的玄学爱好者社交——让命运先替社恐说第一句话。</p>
+    <div class="meta">
+      <span><strong>18</strong> 页</span>
+      <span><strong>4</strong> 个画像</span>
+      <span>预计 <strong>15</strong> 分钟</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 2 · 市场机会 1-2 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Market · 01</span>
+    <h2 class="title">为什么<span class="highlight">现在要做</span></h2>
+    <p class="subtitle">玄学已经从亚文化走到台前,社恐人群正在抛弃传统社交产品。</p>
+    <div class="cards-2">
+      <div class="card">
+        <span class="num">TREND 01</span>
+        <h3>玄学已成年轻人的社交语言</h3>
+        <p>小红书玄学话题累计浏览量 33.2 亿,DeepSeek 算命在年轻人群中全民爆发。命理名片正在取代 MBTI 成为 Z 世代破冰第一张牌。</p>
+      </div>
+      <div class="card">
+        <span class="num">TREND 02</span>
+        <h3>社恐人群需要低压真连接</h3>
+        <p>年轻一代对 Soul / Tinder 式匹配社交产生疲劳,"匹配后不知道说什么"是头部社交产品的结构性痛点。社恐人群既渴望连接,又抗拒即时对话压力——需要一种"不用我时刻在线"的新社交范式。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 3 · 市场机会 3-4 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Market · 02</span>
+    <h2 class="title">一个<span class="highlight">市场真空</span>地带</h2>
+    <p class="subtitle">四家竞品都只做了一半,付费与增长路径却已被市场验证。</p>
+    <div class="cards-2">
+      <div class="card">
+        <span class="num">GAP 03</span>
+        <h3>竞品停在匹配或内容一端</h3>
+        <p><strong>测测</strong>:有玄学,无社交闭环</p>
+        <p><strong>Soul</strong>:有社交,无命运叙事</p>
+        <p><strong>Elys</strong>:有 AI 代理,无命理深度</p>
+        <p><strong>Mirror</strong>:有命理建档,无匹配引擎</p>
+        <p style="margin-top:12px;"><strong>"玄学原生社交"这个交叉点市场真空。</strong></p>
+      </div>
+      <div class="card featured">
+        <span class="num">PROOF 04</span>
+        <h3>付费模型与增长路径已验证</h3>
+        <p>Nebula 月流水 <strong>128 万美元</strong>(玄学付费验证)</p>
+        <p>Soul ARPPU <strong>104 元</strong>(社交订阅验证)</p>
+        <p style="margin-top:12px;">双引擎叠加的商业模型已被市场跑通,付费意愿远超纯 AI 陪伴赛道。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 4 · 目标人群 + 九宫格 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Persona · 01</span>
+    <h2 class="title">核心目标<span class="highlight">九宫格</span></h2>
+    <p class="subtitle">18–32 岁,一二线城市,相信玄学,对情感连接有渴望,但社交主动性弱——她们想遇见对的人,但希望"命运先替自己筛一遍"。</p>
+
+    <div class="matrix-3x3">
+      <div class="axis-label"></div>
+      <div class="axis-label">B1 重度社交</div>
+      <div class="axis-label">B2 中度社交</div>
+      <div class="axis-label">B3 轻度社交</div>
+
+      <div class="axis-label row-label">A1 重度玄学</div>
+      <div class="cell target">
+        <span class="cell-tag">🎯 P0 核心靶心</span>
+        <span class="cell-name">陈予安型<br>画像一</span>
+      </div>
+      <div class="cell p1">
+        <span class="cell-tag">P1 次核心</span>
+        <span class="cell-name">玄学深信<br>+ 温和社交</span>
+      </div>
+      <div class="cell p2">
+        <span class="cell-tag">P2 不主动服务</span>
+        <span class="cell-name">周明月型<br>画像二 · 工具派</span>
+      </div>
+
+      <div class="axis-label row-label">A2 中度玄学</div>
+      <div class="cell target">
+        <span class="cell-tag">🎯 P0 主力用户</span>
+        <span class="cell-name">玄学爱好<br>+ 强社交</span>
+      </div>
+      <div class="cell target">
+        <span class="cell-tag">🎯 P0 主力基本盘</span>
+        <span class="cell-name">玄学爱好<br>+ 中度社交</span>
+      </div>
+      <div class="cell p1">
+        <span class="cell-tag">P1 轻度用户</span>
+        <span class="cell-name">玄学爱好<br>+ 低社交</span>
+      </div>
+
+      <div class="axis-label row-label">A3 轻度玄学</div>
+      <div class="cell p1">
+        <span class="cell-tag">P1 潜力用户</span>
+        <span class="cell-name">画像四<br>A3B1 型</span>
+      </div>
+      <div class="cell p1">
+        <span class="cell-tag">P1 泛用户</span>
+        <span class="cell-name">玄学兴趣<br>+ 中度社交</span>
+      </div>
+      <div class="cell p2">
+        <span class="cell-tag">P2 边缘用户</span>
+        <span class="cell-name">顾哲远型<br>画像三 · 边缘派</span>
+      </div>
+    </div>
+
+    <div class="strategy-row">
+      <span class="pill p0">P0 核心靶心占目标市场约 60%</span>
+      <span class="pill">P1 扩展人群</span>
+      <span class="pill">P2 不主动服务 · 明确不打扰</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 5 · 画像一 陈予安 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label accent">🎯 Persona 01 · 核心靶心</span>
+    <div class="persona-header">
+      <div class="persona-title-group">
+        <span class="persona-id">A1B1 · 重度玄学信仰 + 重度社交渴望</span>
+        <h2>陈予安,29 岁</h2>
+        <p class="persona-tagline">"想被靠近到发疼,又怕到一句话都说不出。"</p>
+      </div>
+      <div class="persona-avatar">👤</div>
+    </div>
+
+    <div class="persona-cards">
+      <div class="persona-card">
+        <h4>基础信息 · 核心标签</h4>
+        <ul>
+          <li>29 岁,女,一线城市外企行政专员</li>
+          <li>独居 35 平米老破小,养一只叫"归墟"的猫</li>
+          <li>家里像微型神坛:水晶簇 / 塔罗牌 / 颂钵 / 月亮女神像 / 五行转运链</li>
+          <li>同时在学紫微斗数、西洋占星、人类图和奇门遁甲</li>
+          <li>每天查黄历开盘,抽牌复盘收尾</li>
+          <li>玄学是她的操作系统:"如果连宇宙都不站在我这边,我真的撑不下去了"</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <h4>核心痛点 · 5 条</h4>
+        <ul>
+          <li><strong>渴望又恐惧</strong>:看到别人挽着朋友大笑会红眼眶,但相亲局坐 5 分钟就借口打车回家</li>
+          <li><strong>玄学从安慰变牢笼</strong>:抽牌成为强迫仪式,一个决定抽七八次直到出现想要的答案</li>
+          <li><strong>信息过载</strong>:同一问题问 GPT、问塔罗师、问自己的牌,凌晨四点抱着猫哭"我只是想知道该不该回他一条消息"</li>
+          <li><strong>潜水党透明人</strong>:潜水在二十几个玄学群,渴望被一针见血解牌的姐姐私聊一句"你还好吗"</li>
+          <li><strong>最崩溃时没人可打电话</strong>:通讯录滑三遍,每个号码都能预想到对方"太晚了吧""你又怎么了"的反应</li>
+        </ul>
+      </div>
+
+      <div class="persona-card insight">
+        <h4>核心期望 · 产品启示</h4>
+        <p><strong>她要的不是更准的预测,而是一个能让她卸下所有仪式、依然觉得自己值得被爱的角落。</strong></p>
+        <p style="margin-top:10px;">在那里她可以不加解释地说"我今天抽到塔牌所以很害怕",对面的人能听懂底下真正的意思是"我现在需要有人告诉我不会有事的"。</p>
+        <p style="margin-top:10px;">💡 "赛博分身替我社交"对她是降维打击——分身先替她筛,她再决定要不要露面。命理名片 = 身份认同,分身日报 = 情感陪伴。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 6 · 画像二 周明月 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Persona 02 · 不主动服务</span>
+    <div class="persona-header">
+      <div class="persona-title-group">
+        <span class="persona-id">A1B3 · 重度玄学信仰 + 低社交渴望</span>
+        <h2>周明月,31 岁</h2>
+        <p class="persona-tagline">"不是害怕社交,是觉得社交没必要且耗损。"</p>
+      </div>
+      <div class="persona-avatar">👤</div>
+    </div>
+
+    <div class="persona-cards">
+      <div class="persona-card">
+        <h4>基础信息 · 核心标签</h4>
+        <ul>
+          <li>31 岁,女,二线城市事业单位资料室管理员</li>
+          <li>独居,养一只叫"太乙"的黑猫</li>
+          <li>客厅没有电视,一张实木供桌:罗盘/铜钱/蓍草/塔罗牌</li>
+          <li>书架塞满《周易》《滴天髓》《渊海子平》等命理孤本</li>
+          <li>不觉得自己"信玄学"——这是她的学问</li>
+          <li>"我不是在寻求慰藉,我是在观察天地运行的规律"</li>
+          <li>维持近乎偏执的"双层生活":单位里的小周 vs 家里的自己</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <h4>核心痛点 · 4 条</h4>
+        <ul>
+          <li><strong>被"关心"所困扰</strong>:妈妈的电话、大姐的广场舞邀请、远房表姐的求测,她需要"让所有好意优雅退散的结界"</li>
+          <li><strong>学问无处安放</strong>:十年啃下来的体系在周围人眼里要么是"封建迷信",要么是"表演才艺",缺少对等的智识对话者</li>
+          <li><strong>数字工具都不懂她</strong>:市面占卜 App 都是"每日运势盲盒",她要的是专业排盘 + 古籍注解 + 离线使用</li>
+          <li><strong>被动暴露的恐惧</strong>:最怕有一天同事发现她真实的精神世界</li>
+        </ul>
+      </div>
+
+      <div class="persona-card insight">
+        <h4>核心期望 · 产品启示</h4>
+        <p><strong>安静、专业、尊重边界的工具</strong>,像一间灯光昏黄的私人书房——没有社区、没有推荐、没有弹窗、没有任何试图激活她社交欲望的设计。</p>
+        <p style="margin-top:10px;">如果一定要说她对"连接"有什么隐秘期望,那是某一天在工具的某个角落偶然读到一条陌生人留下的批注,写得极精妙,让她在屏幕前点点头,然后各自回到各自的山中,互不打扰,也互为知己。</p>
+        <p style="margin-top:10px;">💡 她不是我们的目标用户。她要的是专业工具,我们做的是社交——明确不打扰她,可以是长尾付费用户,但绝不强拉入社交场。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 7 · 画像三 顾哲远 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Persona 03 · 不主动服务</span>
+    <div class="persona-header">
+      <div class="persona-title-group">
+        <span class="persona-id">A3B3 · 轻度玄学兴趣 + 低社交渴望</span>
+        <h2>顾哲远,30 岁</h2>
+        <p class="persona-tagline">"他不孤独,也不想被治愈,他只是希望世界能稍微少烦他一点。"</p>
+      </div>
+      <div class="persona-avatar">👤</div>
+    </div>
+
+    <div class="persona-cards">
+      <div class="persona-card">
+        <h4>基础信息 · 核心标签</h4>
+        <ul>
+          <li>30 岁,男,互联网中厂后端开发工程师</li>
+          <li>独自租住,养一只叫"缓存"的橘猫</li>
+          <li>手机里装着"测测星座",两三周点开一次,看完就划走</li>
+          <li>MBTI 测出来 INTP,觉得"还挺准的"</li>
+          <li>不排斥玄学,但也谈不上信,视其为社交润滑剂</li>
+          <li>用星座 / MBTI 标签快速理解同事,节省判断成本</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <h4>核心痛点 · 5 条</h4>
+        <ul>
+          <li><strong>慢性低强度被打扰感</strong>:不缺连接,是连接太多、质量太差、无法拒绝</li>
+          <li><strong>对"强行深入"的社交极度反感</strong>:最怕自来熟的同事</li>
+          <li><strong>玄学 App 广告多到离谱</strong>,弹窗催开会员,烦躁地连点三下关闭</li>
+          <li><strong>身边女性朋友的"玄学浓度"让他无所适从</strong>,缺少得体的中立姿态</li>
+          <li><strong>不想被算法画成某一类人</strong>:讨厌被推送"INTP 男生恋爱指南"</li>
+        </ul>
+      </div>
+
+      <div class="persona-card insight">
+        <h4>核心期望 · 产品启示</h4>
+        <p><strong>干净、不烦人、偶尔让他轻松一笑的轻量级玄学消遣入口</strong>。打开就看一眼今日运势或小吐槽,看完就关——不推送、不弹窗、不催会员、不搞社区。</p>
+        <p style="margin-top:10px;">最好这个产品根本记不住他,每次打开都像第一次见面。对他来说最好的玄学产品是"用过但想不起名字"的产品。</p>
+        <p style="margin-top:10px;">💡 他不是我们的目标用户。如果他误入我们的产品,应该让他能快速离开或者停留在最轻量的功能层——不要试图把他拉进社交闭环,强行推送只会让他卸载。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 8 · 画像四 A3B1 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label accent">👯 Persona 04 · 增长引擎</span>
+    <div class="persona-header">
+      <div class="persona-title-group">
+        <span class="persona-id">A3B1 · 轻度玄学兴趣 + 重度社交渴望</span>
+        <h2>扩展主力用户</h2>
+        <p class="persona-tagline">"想交朋友,但希望有个体面又好玩的由头。"</p>
+      </div>
+      <div class="persona-avatar">👤</div>
+    </div>
+
+    <div class="persona-cards">
+      <div class="persona-card">
+        <h4>基础信息 · 核心标签</h4>
+        <ul>
+          <li>22–28 岁,一二线城市白领 / 学生 / 初入职场新人</li>
+          <li>喜欢用 MBTI、星座作为社交破冰话题</li>
+          <li>不深入研究命理,但觉得"命盘合不合"是个有趣的话题</li>
+          <li>愿意尝试新社交产品,害怕"冷启动尴尬期"</li>
+          <li>玄学对她是<strong>社交货币</strong>而非信仰</li>
+          <li>对"命理 + 社交"混搭感兴趣:比 Soul 有意思、比星座 App 有温度</li>
+          <li>不会主动开口,但如果有人先搭话会很开心</li>
+        </ul>
+      </div>
+
+      <div class="persona-card">
+        <h4>核心痛点 · 3 条</h4>
+        <ul>
+          <li><strong>想交朋友但开口尴尬</strong>——相亲软件太功利,兴趣社群太封闭,找不到合适的社交入口</li>
+          <li><strong>话题压力</strong>——破冰 5 分钟后不知道说什么,急需能持续推进对话的话题引擎</li>
+          <li><strong>筛选成本高</strong>——不知道对方是不是同类人,每次尝试都像开盲盒</li>
+        </ul>
+      </div>
+
+      <div class="persona-card insight">
+        <h4>核心期望 · 产品启示</h4>
+        <p><strong>希望有一个产品能帮她"自然地和陌生人熟起来"</strong>:命理名片作为身份标签,匹配时附带"为什么你们合",破冰话题有现成的——让她能以最低的心理成本开启一段关系。</p>
+        <p style="margin-top:10px;">💡 她是我们的主力扩展用户。她不是玄学重度信徒,但愿意为"玄学包装的社交产品"付费。命理名片的<strong>分享裂变率在她这里最高</strong>(她会发朋友圈 / 小红书),是我们最重要的增长抓手。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 9 · 服务谁 / 不服务谁 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Persona · 总结</span>
+    <h2 class="title">我们服务谁,<span class="highlight">不服务谁</span></h2>
+    <p class="subtitle">明确用户边界,是产品策略成熟度的第一个证据。</p>
+
+    <div class="serve-compare">
+      <div class="serve-card do">
+        <div class="serve-header">✅ 我们要服务的</div>
+        <h3>「想连接但不敢主动」</h3>
+        <div class="serve-item">
+          <div class="serve-name">🎯 陈予安(A1B1)型</div>
+          <div class="serve-desc">核心靶心,产品最深情感共鸣,护城河所在</div>
+        </div>
+        <div class="serve-item">
+          <div class="serve-name">👯 A3B1 型</div>
+          <div class="serve-desc">主力扩展,增长引擎,裂变最强</div>
+        </div>
+        <div class="serve-item">
+          <div class="serve-name">📊 A2B1 / A2B2 型</div>
+          <div class="serve-desc">中度玄学 + 中重度社交 · 主力基本盘</div>
+        </div>
+      </div>
+
+      <div class="serve-card dont">
+        <div class="serve-header">❌ 我们不服务的</div>
+        <h3>「不想被打扰的人」</h3>
+        <div class="serve-item">
+          <div class="serve-name">周明月(A1B3)型</div>
+          <div class="serve-desc">她要的是专业工具,不是社交——尊重她的边界,不打扰</div>
+        </div>
+        <div class="serve-item">
+          <div class="serve-name">顾哲远(A3B3)型</div>
+          <div class="serve-desc">他要的是三分钟消遣——我们太重,不是他的菜</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strategy-line">
+      我们为<span class="highlight">"想连接但不敢主动"</span>的人而生,不为"完全不想被打扰"的人而建。
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 10 · 差异化三要点 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Differentiation · 01</span>
+    <h2 class="title">凭什么<span class="highlight">是我们做</span></h2>
+    <p class="subtitle">生态位真空 · 结构性痛点 · 双引擎变现——三张底牌缺一不可。</p>
+    <div class="cards-3">
+      <div class="card">
+        <span class="num">MOAT 01</span>
+        <h3>生态位真空,卡在交叉点</h3>
+        <p>测测有玄学无社交、Soul 有社交无玄学、Elys 有 AI 代理无命运叙事、Mirror 有建档无匹配。</p>
+        <p style="margin-top:10px;">"玄学原生社交"交叉点市场真空,大厂因战略定位、监管顾虑或技术信仰均不会主动进入,留下 <strong>6–18 个月窗口期</strong>。</p>
+      </div>
+      <div class="card featured">
+        <span class="num">MOAT 02</span>
+        <h3>命理画像解决"聊不下去"</h3>
+        <p>Soul "98% 匹配度聊起来也就那样"暴露静态标签匹配的天花板。</p>
+        <p style="margin-top:10px;">我们用八字 / 星盘 / MBTI 多体系融合生成"命运纹理",<strong>比 MBTI 深 10 倍</strong>,自带流年运势的持续叙事钩子,从根本上解决匹配后无话可说。</p>
+      </div>
+      <div class="card">
+        <span class="num">MOAT 03</span>
+        <h3>天然传播 + 双引擎变现已验证</h3>
+        <p>小红书玄学话题 33.2 亿浏览、DeepSeek 算命全民爆发证明命理名片本身就是社交货币,获客成本极低。</p>
+        <p style="margin-top:10px;">叠加玄学付费(Nebula 月入 $128 万)+ 社交订阅(Soul ARPPU 104 元)双引擎,付费意愿远超纯 AI 陪伴赛道。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 11 · 商业模式 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Business · 01</span>
+    <h2 class="title">能不能<span class="highlight">赚钱</span></h2>
+    <p class="subtitle">免费建档降低门槛,会员 + 增值双重套利,毛利空间充足。</p>
+    <div class="biz-compare">
+      <div class="biz-card">
+        <h3>定价策略</h3>
+        <div class="biz-row">
+          <span class="biz-label">免费建档 + 首份报告</span>
+          <span class="biz-value">¥0</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">会员订阅(基础盘)</span>
+          <span class="biz-value">¥28–38/月</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">增值解读单次购买</span>
+          <span class="biz-value">¥6–30/次</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">类型</span>
+          <span class="biz-value" style="font-size:13px;">深度命盘 · 流年运势 · 合盘解读</span>
+        </div>
+      </div>
+      <div class="biz-card featured">
+        <h3>单位经济测算</h3>
+        <div class="biz-row">
+          <span class="biz-label">AI 解读单次成本</span>
+          <span class="biz-value">¥0.01–0.05</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">月均服务成本 / 用户</span>
+          <span class="biz-value">¥0.5–2</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">毛利空间</span>
+          <span class="biz-value">充足</span>
+        </div>
+        <div class="biz-row">
+          <span class="biz-label">付费用户 LTV</span>
+          <span class="biz-value" style="font-size:13px;">远高于获客成本</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 12 · TOP 3 风险 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label red">Risk · TOP 3</span>
+    <h2 class="title">三大<span class="highlight">致命风险</span></h2>
+    <p class="subtitle">监管、大厂跟进、核心体验不成立——任一踩中,项目归零。</p>
+
+    <div class="risk-cards">
+      <div class="risk-card critical">
+        <span class="risk-level">🔴 致命</span>
+        <h3>风险一 · 监管红线</h3>
+        <p>玄学社交极易被定性为"算命 / 封建迷信",筑梦岛已因类似问题被网信办约谈下架。</p>
+        <p style="margin-top:10px;"><strong>AI 生成命理内容叠加社交匹配,双重踩线。</strong>一旦被定性,产品直接归零。</p>
+      </div>
+
+      <div class="risk-card high">
+        <span class="risk-level">🟠 高</span>
+        <h3>风险二 · 大厂/Elys 跟进</h3>
+        <p>Elys 已拿 $3000 万 + 阿里蚂蚁资源,小红书"小红圈" 2025 年 12 月内测,Soul 具备 1100 万 DAU + AI 能力随时可转向。</p>
+        <p style="margin-top:10px;"><strong>窗口期仅 6–18 个月,大厂一旦入场流量碾压。</strong></p>
+      </div>
+
+      <div class="risk-card high">
+        <span class="risk-level">🟠 高</span>
+        <h3>风险三 · 核心体验不成立</h3>
+        <p>两个致命假设未验证:</p>
+        <p style="margin-top:6px;">① 用户是否愿意结构化录入八字/玄学数据(<strong>录入率需 ≥ 70%</strong>)</p>
+        <p style="margin-top:6px;">② 匹配 + 日报叙事是否让用户觉得"命运在安排"(<strong>次留 ≥ 30%、7 留 ≥ 20%</strong>)</p>
+        <p style="margin-top:6px;">任一不达标,产品逻辑崩塌。</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 13 · 应对策略 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label accent">Risk · Response</span>
+    <h2 class="title">三大风险<span class="highlight">应对策略</span></h2>
+    <p class="subtitle">定位重构 · 速度换空间 · 极简验证——每个风险都有对冲方案。</p>
+
+    <div class="strategy-cards">
+      <div class="strategy-card">
+        <span class="strat-num">RESPONSE 01</span>
+        <h3>应对监管红线</h3>
+        <ul>
+          <li>定位重构为"自我认知社交"或"传统文化娱乐",绝不使用"预测命运"话术</li>
+          <li>法务前置,上线前明确内容边界</li>
+          <li>免责声明常态化</li>
+          <li>同步规划东南亚 / 日韩出海作为监管对冲</li>
+          <li>八字扩展为"星座+八字+塔罗"多体系,降低单一风险</li>
+        </ul>
+      </div>
+
+      <div class="strategy-card featured">
+        <span class="strat-num">RESPONSE 02</span>
+        <h3>应对大厂跟进 · 速度换空间</h3>
+        <ul>
+          <li>6 周出 MVP,抢在 Elys 验证 C 端模型、小红圈正式开放前建立"命格社交=我们"的品类认知</li>
+          <li>用"关系密度"做壁垒(迁移成本高于工具)</li>
+          <li>将小红书反向作为内容分发渠道而非对手,圈内投钩子内容引流</li>
+          <li>精准切"玄学+社恐"交叉人群,不与 Soul 抢泛社交</li>
+        </ul>
+      </div>
+
+      <div class="strategy-card">
+        <span class="strat-num">RESPONSE 03</span>
+        <h3>应对体验不成立</h3>
+        <ul>
+          <li>开发启动前先做 20–30 人深度访谈验证核心假设,不跳过</li>
+          <li>录入环节极简化——只需太阳星座 1 步起步,提供星盘截图 AI 一键导入</li>
+          <li>匹配结果页强制附带"为什么匹配"解读 + 3 个破冰话题</li>
+          <li>明确止损线:次留&lt;20% / 分享率&lt;10% / 录入率&lt;40% 即停</li>
+          <li>3 个月内验证,止损成本控制在 3–8 万元</li>
+        </ul>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 14 · 资源需求 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Resources · 01</span>
+    <h2 class="title">需要<span class="highlight">什么资源</span></h2>
+    <p class="subtitle">6 人 · 1 个月 · 6 千元——极致精简,快速验证。</p>
+
+    <div class="flow-3">
+      <div class="flow-box">
+        <h4>HUMAN</h4>
+        <div class="flow-value">6</div>
+        <p>人团队</p>
+        <p style="font-size:11px;margin-top:6px;color:var(--text-3);">产品/设计/前后端/运营</p>
+      </div>
+      <div class="flow-arrow">×</div>
+      <div class="flow-box featured">
+        <h4>TIME</h4>
+        <div class="flow-value">1</div>
+        <p>个月</p>
+        <p style="font-size:11px;margin-top:6px;">完成 MVP 上线</p>
+      </div>
+      <div class="flow-arrow">×</div>
+      <div class="flow-box">
+        <h4>BUDGET</h4>
+        <div class="flow-value">6K</div>
+        <p>元预算</p>
+        <p style="font-size:11px;margin-top:6px;color:var(--text-3);">AI 调用 + 服务器 + 工具</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 15 · MVP 功能清单 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">MVP · Scope</span>
+    <h2 class="title">MVP 五大<span class="highlight">核心功能</span></h2>
+    <p class="subtitle">砍掉一切非必要,只保留验证核心假设的最小功能集。</p>
+
+    <div class="mvp-list">
+      <div class="mvp-item">
+        <div class="mvp-num">01</div>
+        <div class="mvp-name">用户登录注册</div>
+        <div class="mvp-value">微信一键登录,降低门槛</div>
+      </div>
+      <div class="mvp-item">
+        <div class="mvp-num">02</div>
+        <div class="mvp-name">玄学信息采集</div>
+        <div class="mvp-value">占卜问答式引导,最小化录入摩擦</div>
+      </div>
+      <div class="mvp-item featured">
+        <div class="mvp-num">03</div>
+        <div class="mvp-name">AI 生成玄学赛博分身</div>
+        <div class="mvp-value">⭐ Aha Moment,3 分钟生成专属命理名片</div>
+      </div>
+      <div class="mvp-item">
+        <div class="mvp-num">04</div>
+        <div class="mvp-name">匹配引擎(玄学契合度算法)</div>
+        <div class="mvp-value">多体系加权,解决"聊不下去"</div>
+      </div>
+      <div class="mvp-item featured">
+        <div class="mvp-num">05</div>
+        <div class="mvp-name">赛博分身 24 小时自动交友</div>
+        <div class="mvp-value">⭐ 差异化护城河,解决社恐痛点</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 16 · Week 1-2 验证期 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Action Plan · 验证期</span>
+    <h2 class="title">Week 1-2 · <span class="highlight">假设验证</span></h2>
+    <p class="subtitle">不跳过用户访谈,先拿到 Go / No-Go 决策,再进入开发。</p>
+
+    <div class="week-compare">
+      <div class="week-card">
+        <span class="week-num">WEEK 01</span>
+        <h3>假设验证 + 设计启动</h3>
+        <p class="week-goal">核心目标:回答"用户到底愿不愿意结构化录入玄学数据"</p>
+        <ul>
+          <li>招募 20–30 名目标用户启动深度访谈(小红书玄学博主粉丝、豆瓣"赛博玄学研究所"、Soul 流失用户),验证录入意愿、对 AI 分身社交的接受度、付费触发点</li>
+          <li>产品经理输出 PRD v0.1,锁定 5 个 MVP 功能边界,明确"不做清单"</li>
+          <li>UI 确定视觉风格(命理名片是传播核心,P0 优先级),输出 3–5 版命理名片风格稿</li>
+          <li>技术选型确认:排盘用规则引擎自建 · 叙事用 Claude Sonnet · 日常互动用 DeepSeek · 搭建开发环境和代码仓库</li>
+          <li>法务前置:确认"自我认知社交"定位在应用商店的合规边界</li>
+        </ul>
+      </div>
+
+      <div class="week-card featured">
+        <span class="week-num">WEEK 02</span>
+        <h3>验证收口 + 原型设计</h3>
+        <p class="week-goal">核心目标:拿到 Go / No-Go 决策,进入开发</p>
+        <ul>
+          <li>完成访谈分析,输出验证报告:录入意愿率、对"AI 分身替我社交"的接受度、最打动人的功能点——不达标则回炉重做,达标则 all in</li>
+          <li>UI 完成全链路高保真原型(注册登录 → 玄学信息采集 → 命理名片生成 → 匹配列表 → 分身日报)</li>
+          <li>后端搭建用户系统基础架构 + 八字 / 星盘规则引擎(确定性计算,可并行启动)</li>
+          <li>前端搭好项目脚手架,完成登录注册页面</li>
+          <li>产品同步设计命理名片 A/B 测试方案,为后续分享率验证铺垫</li>
+        </ul>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 17 · Week 3-4 开发期 ========== -->
+<section class="slide">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label">Action Plan · 开发期</span>
+    <h2 class="title">Week 3-4 · <span class="highlight">打通主链路</span></h2>
+    <p class="subtitle">前两周从注册到生成分身,后两周跑通匹配到分身社交的完整闭环。</p>
+
+    <div class="week-compare">
+      <div class="week-card">
+        <span class="week-num">WEEK 03</span>
+        <h3>核心功能开发(1+2+3)</h3>
+        <p class="week-goal">核心目标:打通"注册 → 录入 → 生成分身"主链路</p>
+        <ul>
+          <li>前端完成用户登录注册模块(微信一键登录优先,降低门槛)</li>
+          <li>前端完成玄学信息采集页:最小化设计,支持只填太阳星座起步,附带"星盘截图一键识别"降低录入摩擦</li>
+          <li>后端完成八字 / 星盘排盘规则引擎,对接 Claude Sonnet 生成命理叙事文本</li>
+          <li>后端完成 AI 赛博分身生成接口:命格画像 + 社交风格 + Avatar,目标 3 分钟内完成全流程</li>
+          <li>设计评审:命理名片视觉是否具备"想截图分享"的冲动——这是裂变的生死线</li>
+        </ul>
+      </div>
+
+      <div class="week-card featured">
+        <span class="week-num">WEEK 04</span>
+        <h3>匹配引擎 + 分身社交(4+5)</h3>
+        <p class="week-goal">核心目标:跑通"匹配 → 分身自动交友 → 日报回访"闭环</p>
+        <ul>
+          <li>后端开发玄学契合度匹配算法:八字合盘 + 星盘 Synastry + MBTI 兼容度加权,输出"为什么匹配"的结构化解读</li>
+          <li>后端开发分身 24 小时自动社交模块:基于 Harness Engineering 约束(命格一致性 → 安全审核 → 质量检查三层),Agent 自主发起对话并沉淀记忆</li>
+          <li>前端完成匹配列表页 + 分身日报页(早运势 + 晚日报叙事化推送)</li>
+          <li>前后端联调,打通 5 个功能完整链路</li>
+          <li>周末启动小范围内测(10 人级),重点观察:命理名片分享意愿、日报打开率、是否出现"又是 AI 报告"的体感问题</li>
+        </ul>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========== 页 18 · 结尾金句 ========== -->
+<section class="slide ending">
+  <div class="slide-wrapper"><div class="slide-inner">
+    <span class="label accent">The End</span>
+    <h2>让<span class="highlight">命运</span>替社恐<br>说第一句话。</h2>
+    <p>我们为"想连接但不敢主动"的人而生。<br>用命理画像解决聊不下去,用赛博分身替真人完成第一次走近,<br>让每一份卸下仪式的脆弱,都能在对的人那里,被温柔地接住。</p>
+  </div></div>
+</section>
+
+</div>
+
+<!-- 底部导航 -->
+<div class="nav">
+  <button id="prevBtn">←</button>
+  <span class="page-info" id="pageInfo">01 / 18</span>
+  <button id="nextBtn">→</button>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const pageInfo = document.getElementById('pageInfo');
+  const progress = document.getElementById('progress');
+  const brand = document.querySelector('.brand');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function go(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    slides[current].scrollTop = 0;
+    current = idx;
+    slides[current].classList.add('active');
+    slides[current].scrollTop = 0;
+    pageInfo.textContent = pad(current + 1) + ' / ' + pad(total);
+    progress.style.width = ((current + 1) / total * 100) + '%';
+    // brand 仅首尾页显示
+    if (current === 0 || current === total - 1) {
+      brand.classList.add('show');
+    } else {
+      brand.classList.remove('show');
+    }
+  }
+
+  prevBtn.addEventListener('click', () => go(current - 1));
+  nextBtn.addEventListener('click', () => go(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+  });
+
+  // 触摸滑动
+  let touchStartX = 0, touchStartY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // 只有水平滑动幅度大于垂直时才翻页
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx > 0) go(current - 1);
+      else go(current + 1);
+    }
+  }, { passive: true });
+
+  // 初始化
+  go(0);
+})();
+</script>
+
+</body>
+</html>

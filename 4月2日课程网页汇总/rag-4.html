@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原始数据采集 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="4" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · Pipeline A</div>
+<h1 class="reveal d1 slide-title">Pipeline A：原始数据采集</h1>
+<p class="subtitle reveal d2">多数据源的聚合和筛选</p>
+
+<h2 class="reveal d3" style="margin-top:24px;margin-bottom:12px">数据来源分类</h2>
+<table class="styled-table reveal d3">
+  <thead><tr><th>来源</th><th>类别</th><th>示例</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="4"><strong style="color:var(--purple-l)">企业内部</strong></td><td>历史文档</td><td>产品文档、操作手册</td></tr>
+    <tr><td>业务系统</td><td>CRM、ERP、工单系统</td></tr>
+    <tr><td>对话与QA</td><td>多轮对话记录、客服QA</td></tr>
+    <tr><td>网盘与API</td><td>企业网盘、内部API接口</td></tr>
+    <tr><td rowspan="4"><strong style="color:var(--blue-l)">外网公开</strong></td><td>网页爬虫</td><td>行业网站、论坛</td></tr>
+    <tr><td>API接口</td><td>公开API数据</td></tr>
+    <tr><td>在线文档</td><td>知识库、Wiki</td></tr>
+    <tr><td>FAQ与客服</td><td>公开FAQ、客服记录</td></tr>
+    <tr><td rowspan="2"><strong style="color:var(--cyan-l)">付费外采</strong></td><td>公开数据集</td><td>Hugging Face、Kaggle</td></tr>
+    <tr><td>邮件与通讯</td><td>邮件归档、通讯记录</td></tr>
+  </tbody>
+</table>
+
+<h2 class="reveal d3" style="margin-top:28px;margin-bottom:12px">数据类型</h2>
+<table class="styled-table reveal d3">
+  <thead><tr><th>类型</th><th>示例</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge badge-purple">结构化</span></td><td>Excel/CSV 表格、数据库表、API 返回数据</td></tr>
+    <tr><td><span class="badge badge-blue">半结构化</span></td><td>PDF 文档、Word、Markdown、HTML 网页</td></tr>
+    <tr><td><span class="badge badge-cyan">非结构化</span></td><td>扫描件（图片）、音频转录、视频字幕、纯文本日志</td></tr>
+    <tr><td><span class="badge badge-amber">动态数据</span></td><td>行业新闻、产品更新日志、用户 FAQ 新增</td></tr>
+  </tbody>
+</table>
+
+<div class="card reveal d4" style="margin-top:24px;border-color:rgba(16,185,129,0.2)">
+  <p style="font-size:0.85rem;color:var(--c2)">💡 <strong style="color:var(--green-l)">最简单最省钱的是爬数据</strong>——只采集与业务场景强相关的数据，同时记录数据来源</p>
+</div>
+
+<div class="card reveal d5" style="margin-top:16px;border-color:rgba(139,92,246,0.2)">
+  <h2 style="margin-bottom:12px">🎯 产品经理职责</h2>
+  <ol style="font-size:0.85rem;color:var(--c2);padding-left:20px;line-height:2">
+    <li>基于业务场景定义知识边界</li>
+    <li>协调业务方提供核心数据源、明确数据优先级</li>
+    <li>联合法务审查数据版权与合规性</li>
+    <li>制定数据来源标注规范，确保后续检索结果可溯源</li>
+  </ol>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

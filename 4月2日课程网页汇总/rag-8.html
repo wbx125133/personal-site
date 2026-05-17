@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>面试高频问题 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="8" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块</div>
+<h1 class="reveal d1 slide-title">RAG 面试高频问题与话术</h1>
+<p class="subtitle reveal d2">行业认知 & 技术深度展示</p>
+
+<div class="card reveal d3" style="margin-bottom:24px;border-color:rgba(139,92,246,0.2)">
+  <h2 style="margin-bottom:12px">🧠 行业认知话术</h2>
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:0.82rem;color:var(--c2)">
+    <li style="display:flex;align-items:flex-start;gap:8px"><span class="badge badge-purple" style="flex-shrink:0">Deepseek</span> R1 弥补了国内没有推理模型的空白</li>
+    <li style="display:flex;align-items:flex-start;gap:8px"><span class="badge badge-blue" style="flex-shrink:0">Kimi 2.5</span> 长思考依靠 CoT 草稿让模型像人一样思考</li>
+    <li style="display:flex;align-items:flex-start;gap:8px"><span class="badge badge-cyan" style="flex-shrink:0">Kimi 2.0</span> 弥补了国内大模型没有 Agent 能力的空白</li>
+    <li style="display:flex;align-items:flex-start;gap:8px"><span class="badge badge-amber" style="flex-shrink:0">BARD</span> 2023 年谷歌首款大模型，对标 OpenAI</li>
+    <li style="display:flex;align-items:flex-start;gap:8px"><span class="badge badge-green" style="flex-shrink:0">Gemini 2.5</span> 依靠 CoT 长思考打的翻身仗</li>
+  </ul>
+</div>
+
+<div class="grid-2 reveal d4" style="gap:16px;align-items:stretch">
+  <div class="side-card" style="border-left-color:var(--purple);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">你们项目中的数据来源有哪些？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">结合 Pipeline A 的数据来源分类回答，突出企业内部 + 外网公开 + 付费外采的组合策略</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--blue);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">你们的数据量级是多大？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">根据实际项目说明文档数量、Chunk 数量、向量库规模</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--cyan);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">你们怎么处理元数据的？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">将解析后的文本与采集阶段记录的元数据（来源、采集时间）绑定，为后续 Chunk 元数据完善打下基础。</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--green);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">多栏 PDF 文本提取顺序错乱怎么办？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">使用 DocTR 进行文档布局分析，按"左栏→右栏"顺序提取。</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--amber);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">复杂排版的阅读顺序问题怎么解决？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">排版分析 + 规则排序，按顺序生成文本，使用腾讯文档解析模型 DREAM 来解决。</p>
+  </div>
+  <div class="side-card" style="border-left-color:var(--rose);display:flex;flex-direction:column;height:100%">
+    <p style="font-size:0.78rem;color:var(--c4);margin-bottom:6px">面试问题</p>
+    <h2 style="font-size:0.88rem">RAG 文本分割中遇到的挑战是什么？</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:8px">之前使用标点符号、字数、段落信息基于规则的切分，对文档格式要求高，参数敏感，文本容易被截断造成语义不完整。<strong style="color:var(--c2)">解法：多级文档切分。</strong></p>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

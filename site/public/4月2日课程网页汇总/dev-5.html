@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Token与语义表示 — AI产品开发</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="5" data-total="6">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-amber reveal">AI 产品开发模块</div>
+<h1 class="reveal d1 slide-title">Token 与语义表示</h1>
+<p class="subtitle reveal d2">从自然语言到向量空间的转换链路</p>
+
+<h2 class="reveal d3" style="margin-bottom:12px">转换链路</h2>
+<div class="reveal d3" style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:20px">
+  <div class="flow-node accent" style="font-size:0.82rem;padding:14px 20px">📝 自然语言</div>
+  <div class="connector-line" style="min-width:40px;flex:0 0 40px"></div>
+  <div class="flow-node" style="font-size:0.82rem;padding:14px 20px">🔤 Token 字符</div>
+  <div class="connector-line" style="min-width:40px;flex:0 0 40px"></div>
+  <div class="flow-node accent" style="font-size:0.82rem;padding:14px 20px">📐 语义坐标</div>
+</div>
+
+<div class="grid-2 reveal d3" style="gap:16px;margin-bottom:28px">
+  <div class="code-block" style="font-size:0.82rem;line-height:2"><span class="label">Token 编码</span>「我」 → Token ID: <strong style="color:var(--purple-l)">1234</strong><br>→ 语义坐标: <strong style="color:var(--cyan-l)">[1, 2, 5]</strong></div>
+  <div class="code-block" style="font-size:0.82rem;line-height:2"><span class="label">Token 解析</span>「我」 → <strong style="color:var(--purple-l)">12345</strong> → 解码<br>→ 向量坐标: <strong style="color:var(--cyan-l)">13.5</strong></div>
+</div>
+
+<h2 class="reveal d4" style="margin-bottom:16px">关键技术</h2>
+<div class="grid-4 reveal d4" style="gap:14px;margin-bottom:28px">
+  <div class="card" style="text-align:center;padding:20px">
+    <span style="font-size:1.5rem">🔦</span>
+    <h2 style="font-size:0.85rem;margin-top:10px;color:var(--purple-l)">划重点</h2>
+    <p style="font-size:0.75rem;color:var(--c3);margin-top:6px">在词元中高亮关键信息<br>如「月亮」「五彩鱼」</p>
+  </div>
+  <div class="card" style="text-align:center;padding:20px">
+    <span style="font-size:1.5rem">👁️</span>
+    <h2 style="font-size:0.85rem;margin-top:10px;color:var(--blue-l)">Attention</h2>
+    <p style="font-size:0.75rem;color:var(--c3);margin-top:6px">注意力机制<br>聚焦关键信息</p>
+  </div>
+  <div class="card" style="text-align:center;padding:20px">
+    <span style="font-size:1.5rem">🧩</span>
+    <h2 style="font-size:0.85rem;margin-top:10px;color:var(--cyan-l)">Transformer</h2>
+    <p style="font-size:0.75rem;color:var(--c3);margin-top:6px">自注意力架构<br>并行处理序列</p>
+  </div>
+  <div class="card" style="text-align:center;padding:20px">
+    <span style="font-size:1.5rem">📖</span>
+    <h2 style="font-size:0.85rem;margin-top:10px;color:var(--green-l)">Context</h2>
+    <p style="font-size:0.75rem;color:var(--c3);margin-top:6px">上下文理解<br>多轮对话连贯</p>
+  </div>
+</div>
+
+<h2 class="reveal d5" style="margin-bottom:16px">输出环节</h2>
+<div class="grid-3 reveal d5" style="gap:16px">
+  <div class="card card-accent purple" style="text-align:center">
+    <span style="font-size:1.3rem">🔓</span>
+    <h2 style="color:var(--purple-l);margin-top:8px">Decoding</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:6px">解码 — 将向量还原为自然语言</p>
+  </div>
+  <div class="card card-accent blue" style="text-align:center">
+    <span style="font-size:1.3rem">🌊</span>
+    <h2 style="color:var(--blue-l);margin-top:8px">Streaming</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:6px">流式输出 — 逐 Token 实时返回</p>
+  </div>
+  <div class="card card-accent rose" style="text-align:center">
+    <span style="font-size:1.3rem">👻</span>
+    <h2 style="color:var(--rose);margin-top:8px">Hallucination</h2>
+    <p style="font-size:0.82rem;color:var(--c3);margin-top:6px">模型幻觉 — 生成看似合理但错误的内容</p>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="dev-nav.js"></script>
+</body>
+</html>

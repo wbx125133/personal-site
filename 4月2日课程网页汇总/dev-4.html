@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大模型基础与技术原理 — AI产品开发</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="4" data-total="6">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-amber reveal">AI 产品开发模块</div>
+<h1 class="reveal d1 slide-title">大模型基础与技术原理</h1>
+<p class="subtitle reveal d2">LLM 核心特点与回答问题流程</p>
+
+<div class="card reveal d3" style="margin-bottom:24px;border-color:rgba(139,92,246,0.2)">
+  <h2 style="margin-bottom:16px">🧠 LLM 三大核心要素</h2>
+  <div class="grid-3" style="gap:12px;margin-bottom:20px">
+    <div style="padding:16px;border-radius:10px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);text-align:center">
+      <span style="font-size:1.5rem">📚</span>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--purple-l);margin-top:8px">海量数据</p>
+    </div>
+    <div style="padding:16px;border-radius:10px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);text-align:center">
+      <span style="font-size:1.5rem">🏗️</span>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--blue-l);margin-top:8px">低秩模型</p>
+    </div>
+    <div style="padding:16px;border-radius:10px;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.15);text-align:center">
+      <span style="font-size:1.5rem">⚙️</span>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--cyan-l);margin-top:8px">算法</p>
+    </div>
+  </div>
+  <h2 style="margin-bottom:12px;font-size:0.9rem">NLP 发展三阶段</h2>
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:16px">
+    <div class="flow-node" style="font-size:0.78rem;padding:10px 16px">a. 符号主义</div>
+    <div class="connector-line" style="min-width:24px;flex:0 0 24px"></div>
+    <div class="flow-node" style="font-size:0.78rem;padding:10px 16px">b. 浅层模型</div>
+    <div class="connector-line" style="min-width:24px;flex:0 0 24px"></div>
+    <div class="flow-node accent" style="font-size:0.78rem;padding:10px 16px">c. 统计主义（深层模型）</div>
+  </div>
+  <p style="font-size:0.82rem;color:var(--c3)">技术演进：<span class="badge badge-purple">CNN</span> → <span class="badge badge-blue">RNN</span><span style="font-size:0.72rem;color:var(--c4)">（Paul Werbos）</span> → <span class="badge badge-cyan">Transformer</span></p>
+</div>
+
+<h2 class="reveal d4" style="margin-bottom:12px">大模型回答问题流程</h2>
+<div class="reveal d4" style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:16px">
+  <div class="flow-node" style="font-size:0.75rem;padding:10px 14px">拆解问题</div>
+  <div class="connector-line" style="min-width:20px;flex:0 0 20px"></div>
+  <div class="flow-node" style="font-size:0.75rem;padding:10px 14px">技术映射</div>
+  <div class="connector-line" style="min-width:20px;flex:0 0 20px"></div>
+  <div class="flow-node" style="font-size:0.75rem;padding:10px 14px">Query</div>
+  <div class="connector-line" style="min-width:20px;flex:0 0 20px"></div>
+  <div class="flow-node" style="font-size:0.75rem;padding:10px 14px">Tokenization</div>
+  <div class="connector-line" style="min-width:20px;flex:0 0 20px"></div>
+  <div class="flow-node" style="font-size:0.75rem;padding:10px 14px">Embedding</div>
+  <div class="connector-line" style="min-width:20px;flex:0 0 20px"></div>
+  <div class="flow-node accent" style="font-size:0.75rem;padding:10px 14px">Semantics</div>
+</div>
+
+<div class="grid-3 reveal d5" style="gap:12px;margin-bottom:20px">
+  <div style="text-align:center;padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--purple-l)">理解含义</strong></div>
+  <div style="text-align:center;padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--blue-l)">划定重点</strong></div>
+  <div style="text-align:center;padding:12px;border-radius:10px;background:var(--surface-1);font-size:0.82rem;color:var(--c2)"><strong style="color:var(--cyan-l)">重组回答</strong></div>
+</div>
+
+<div class="card reveal d5" style="border-color:rgba(16,185,129,0.2);text-align:center">
+  <p style="font-size:0.85rem;color:var(--c2)">💡 核心逻辑：将用户问题<strong style="color:var(--green-l)">"分解"为模型可理解的词元（Token）</strong>，再通过向量化完成语义理解与回答生成</p>
+</div>
+
+</div>
+</main>
+<script src="dev-nav.js"></script>
+</body>
+</html>

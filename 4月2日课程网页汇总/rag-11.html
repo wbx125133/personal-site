@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>生成环节 — RAG课程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="11" data-total="11">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag tag-cyan reveal">RAG 模块 · Generation</div>
+<h1 class="reveal d1 slide-title">生成环节的 5 个流程</h1>
+<p class="subtitle reveal d2">从检索结果到高质量回答</p>
+
+<!-- 01 提示词构建 -->
+<div class="card reveal d3" style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+    <div class="phase-num purple" style="margin:0">01</div>
+    <h2>提示词构建</h2>
+  </div>
+  <p style="font-size:0.85rem;color:var(--c2);margin-bottom:16px">将检索结果与用户查询整合成结构化指令，引导生成高质量回答</p>
+  <table class="styled-table" style="margin:0">
+    <thead><tr><th>要素</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="color:var(--purple-l)">任务定义</strong></td><td>明确告知模型角色和任务类型（如"作为金融分析师，分析..."）</td></tr>
+      <tr><td><strong style="color:var(--blue-l)">上下文整合</strong></td><td>将检索到的 Top-K 文档片段按相关性排序，与原始查询拼接</td></tr>
+      <tr><td><strong style="color:var(--cyan-l)">格式指令</strong></td><td>规定输出格式（如结构化回答、列表、段落）</td></tr>
+      <tr><td><strong style="color:var(--green-l)">约束条件</strong></td><td>明确禁止行为（如"禁止编造信息"）和置信度要求</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 02 LLM 生成执行 -->
+<div class="card reveal d3" style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div class="phase-num blue" style="margin:0">02</div>
+    <h2>LLM 生成执行</h2>
+  </div>
+  <p style="font-size:0.85rem;color:var(--c2)">模型根据构建好的提示词生成回答</p>
+  <div class="flow" style="margin-top:12px;gap:6px;flex-wrap:wrap;font-size:0.82rem">
+    <span class="badge badge-blue">结构化 Prompt</span>
+    <span style="color:var(--c4)">→</span>
+    <span style="color:var(--c2)">LLM 推理</span>
+    <span style="color:var(--c4)">→</span>
+    <span class="badge badge-green">生成回答</span>
+  </div>
+</div>
+
+<!-- 03 内容优化 -->
+<div class="card reveal d4" style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div class="phase-num cyan" style="margin:0">03</div>
+    <h2>内容优化与后处理</h2>
+  </div>
+  <p style="font-size:0.85rem;color:var(--c2)">对生成结果进行质量检查和格式优化</p>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <span class="badge badge-cyan">事实核验</span>
+    <span class="badge badge-cyan">格式规范</span>
+    <span class="badge badge-cyan">来源标注</span>
+    <span class="badge badge-cyan">置信度评估</span>
+  </div>
+</div>
+
+<!-- 04 多轮对话 -->
+<div class="card reveal d4" style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div class="phase-num green" style="margin:0">04</div>
+    <h2>多轮对话与上下文管理</h2>
+  </div>
+  <p style="font-size:0.85rem;color:var(--c2)">维护对话历史，确保多轮交互的连贯性</p>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <span class="badge badge-green">对话历史压缩</span>
+    <span class="badge badge-green">上下文窗口管理</span>
+    <span class="badge badge-green">指代消解</span>
+  </div>
+</div>
+
+<!-- 05 复杂问题 -->
+<div class="card reveal d5">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div class="phase-num amber" style="margin:0">05</div>
+    <h2>复杂问题处理策略</h2>
+  </div>
+  <p style="font-size:0.85rem;color:var(--c2)">针对复杂问题的分步处理和多跳推理</p>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <span class="badge badge-amber">问题拆解</span>
+    <span class="badge badge-amber">多跳推理</span>
+    <span class="badge badge-amber">结果聚合</span>
+    <span class="badge badge-amber">自我反思</span>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="rag-nav.js"></script>
+</body>
+</html>

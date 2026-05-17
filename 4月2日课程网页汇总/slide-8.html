@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prompt基础认知 — LLM与Prompt工程</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="8" data-total="12">
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<main class="slide">
+<div class="slide-inner slide-content">
+
+<div class="tag reveal">模块三 · Prompt 技巧</div>
+<h1 class="reveal d1 slide-title">Prompt 是什么？</h1>
+<p class="subtitle reveal d2">理解人与AI沟通的核心</p>
+<div class="flow reveal d3" style="margin:32px 0 40px">
+  <div class="flow-node" style="border-color:rgba(139,92,246,0.3)">📝 输入提示</div>
+  <div class="connector-line" style="min-width:60px"></div>
+  <div class="flow-node accent" style="padding:20px 36px;font-size:1rem;box-shadow:0 0 30px rgba(139,92,246,0.12)">🤖 大语言模型</div>
+  <div class="connector-line" style="min-width:60px"></div>
+  <div class="flow-node" style="border-color:rgba(6,182,212,0.3)">📤 生成回复</div>
+</div>
+<div class="card reveal d3" style="text-align:center;padding:28px;border-color:rgba(139,92,246,0.2);margin-bottom:24px">
+  <p style="font-size:1.3rem;font-weight:600;color:var(--c1)"><span class="grad grad-shift">Prompt = 表达</span></p>
+  <div class="flow" style="margin:20px 0 0;gap:8px;font-size:0.82rem">
+    <span class="badge badge-purple">本意</span><span style="color:var(--c4)">→</span>
+    <span style="color:var(--c3)">编码</span><span style="color:var(--c4)">→</span>
+    <span class="badge badge-blue">文意 (Prompt)</span><span style="color:var(--c4)">→</span>
+    <span style="color:var(--c3)">解码</span><span style="color:var(--c4)">→</span>
+    <span class="badge badge-cyan">解意 (AI理解)</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:0.72rem;color:var(--c4)">
+    <span>说话人的经验/词汇/知识</span>
+    <span>AI基于训练数据的理解</span>
+  </div>
+</div>
+<div class="card reveal d4" style="text-align:center;padding:24px;background:rgba(139,92,246,0.04);border-color:rgba(139,92,246,0.2)">
+  <p style="font-family:var(--mono);font-size:1.15rem;color:var(--c1);font-weight:500"><span style="color:var(--cyan-l)">AI效果</span> = LLM能力 × (<span style="color:var(--purple-l)">任务理解</span> + <span style="color:var(--green-l)">Prompt质量</span>)</p>
+</div>
+
+</div>
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

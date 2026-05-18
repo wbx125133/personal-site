@@ -6,88 +6,64 @@
 <title>AI 产品炼金实验室</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .portal { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 var(--space-xl) 80px; position:relative; z-index:2; background:url('assets/images/bg-hero.jpg') center top/cover no-repeat fixed; }
-  .portal::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,9,10,0.05) 0%,rgba(8,9,10,0.18) 35%,rgba(8,9,10,0.72) 65%,#08090a 100%); pointer-events:none; z-index:0; }
+  .portal { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:96px 24px 72px; position:relative; z-index:2; background:#000; overflow:hidden; }
+  .portal::before { content:''; position:absolute; inset:0; background:url('assets/images/bg-hero.jpg') center top/cover no-repeat; opacity:0.18; filter:grayscale(1) contrast(1.08); pointer-events:none; z-index:0; }
+  .portal::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.5) 0%,#000 72%); pointer-events:none; z-index:0; }
   .portal > * { position:relative; z-index:1; }
-  .portal-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1200px; width:100%; margin-top:var(--space-xl); align-items:stretch; }
+  .portal-kicker { color:#2997ff; font-size:14px; line-height:1.42; margin-bottom:14px; }
+  .portal-title { max-width:980px; margin:0 auto; color:#f5f5f7; font-size:clamp(2.7rem,7vw,5.4rem); font-weight:600; line-height:1.04; letter-spacing:0; text-align:center; }
+  .portal-title span { display:inline; }
+  .portal-subtitle { max-width:760px; margin:20px auto 0; color:rgba(245,245,247,0.66); font-size:clamp(1.05rem,2vw,1.45rem); line-height:1.42; text-align:center; }
+  .portal-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1180px; width:100%; margin-top:56px; align-items:stretch; }
   .portal-card {
-    position:relative; display:flex; flex-direction:column; padding:32px 24px 28px; border-radius:var(--radius-lg);
-    background:linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-    border:1px solid rgba(255,255,255,0.06); text-decoration:none; color:inherit;
-    backdrop-filter:saturate(180%) blur(24px); -webkit-backdrop-filter:saturate(180%) blur(24px);
-    transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.4s ease;
+    position:relative; display:flex; flex-direction:column; min-height:238px; padding:28px 24px 24px; border-radius:8px;
+    background:#1d1d1f;
+    border:0; text-decoration:none; color:inherit;
+    backdrop-filter:none; -webkit-backdrop-filter:none;
+    transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);
     overflow:hidden;
   }
   .portal-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    border-radius:var(--radius-lg) var(--radius-lg) 0 0; opacity:0.5; transition:opacity 0.4s ease;
+    content:''; position:absolute; top:0; left:24px; right:24px; height:1px;
+    background:rgba(255,255,255,0.14); opacity:1;
   }
   .portal-card::after {
-    content:''; position:absolute; inset:0; border-radius:var(--radius-lg); opacity:0;
-    transition:opacity 0.5s ease; pointer-events:none;
+    content:''; position:absolute; left:24px; right:24px; bottom:0; height:2px; background:#0071e3; transform:scaleX(0); transform-origin:left; transition:transform 0.35s cubic-bezier(0.16,1,0.3,1); pointer-events:none;
   }
-  .portal-card.purple::before { background:linear-gradient(90deg,#6366f1,#8b5cf6,#a78bfa); }
-  .portal-card.cyan::before { background:linear-gradient(90deg,#06b6d4,#22d3ee,#34d399); }
-  .portal-card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,0.14); }
-  .portal-card:hover::before { opacity:1; }
-  .portal-card:hover::after { opacity:1; }
-  .portal-card.purple::after { background:radial-gradient(circle at 50% 0%, rgba(139,92,246,0.06) 0%, transparent 60%); }
-  .portal-card.cyan::after { background:radial-gradient(circle at 50% 0%, rgba(6,182,212,0.06) 0%, transparent 60%); }
-  .portal-card.purple:hover { box-shadow:0 8px 40px rgba(99,102,241,0.14), 0 0 60px rgba(139,92,246,0.06); }
-  .portal-card.cyan:hover { box-shadow:0 8px 40px rgba(6,182,212,0.14), 0 0 60px rgba(34,211,238,0.06); }
-  .portal-card.amber::before { background:linear-gradient(90deg,#d97706,#f59e0b,#fbbf24); }
-  .portal-card.amber::after { background:radial-gradient(circle at 50% 0%, rgba(245,158,11,0.06) 0%, transparent 60%); }
-  .portal-card.amber:hover { box-shadow:0 8px 40px rgba(245,158,11,0.14), 0 0 60px rgba(251,191,36,0.06); }
-  .portal-card.amber:hover .arrow { color:#fbbf24; }
-  .portal-card.green::before { background:linear-gradient(90deg,#10b981,#34d399,#6ee7b7); }
-  .portal-card.green::after { background:radial-gradient(circle at 50% 0%, rgba(16,185,129,0.06) 0%, transparent 60%); }
-  .portal-card.green:hover { box-shadow:0 8px 40px rgba(16,185,129,0.14), 0 0 60px rgba(52,211,153,0.06); }
-  .portal-card.green:hover .arrow { color:#34d399; }
-  .portal-card.blue::before { background:linear-gradient(90deg,#4f46e5,#6366f1,#818cf8); }
-  .portal-card.blue::after { background:radial-gradient(circle at 50% 0%, rgba(79,70,229,0.06) 0%, transparent 60%); }
-  .portal-card.blue:hover { box-shadow:0 8px 40px rgba(79,70,229,0.14), 0 0 60px rgba(99,102,241,0.06); }
-  .portal-card.blue:hover .arrow { color:#818cf8; }
-  .portal-card .card-icon { font-size:2.2rem; margin-bottom:var(--space-md); display:block; filter:saturate(1.1); }
-  .portal-card h2 { font-size:var(--font-lg); font-weight:600; letter-spacing:-0.025em; line-height:1.14; color:var(--c1); margin-bottom:6px; }
-  .portal-card p { font-size:var(--font-sm); color:var(--c3); line-height:1.5; letter-spacing:-0.014em; margin-bottom:var(--space-lg); flex:1; }
+  .portal-card:hover { transform:translateY(-2px); background:#242426; box-shadow:rgba(0,0,0,0.22) 3px 5px 30px 0; }
+  .portal-card:hover::after { transform:scaleX(1); }
+  .portal-card:hover .arrow { color:#2997ff; transform:translateX(3px); }
+  .portal-card .card-icon { font-size:0.78rem; margin-bottom:18px; display:block; color:#2997ff; filter:none; letter-spacing:0; }
+  .portal-card h2 { font-size:clamp(1.22rem,1.8vw,1.55rem); font-weight:600; letter-spacing:0; line-height:1.16; color:#f5f5f7; margin-bottom:10px; }
+  .portal-card p { font-size:0.95rem; color:rgba(245,245,247,0.6); line-height:1.47; letter-spacing:0; margin-bottom:24px; flex:1; }
   .portal-card .card-footer { display:flex; align-items:center; justify-content:space-between; }
-  .portal-card .arrow { font-size:1.1rem; color:var(--c4); transition:transform 0.4s var(--ease-out),color 0.3s ease; }
-  .portal-card:hover .arrow { transform:translateX(5px); }
-  .portal-card.purple:hover .arrow { color:var(--purple-l); }
-  .portal-card.cyan:hover .arrow { color:var(--cyan-l); }
-  .portal-footer { margin-top:72px; font-size:var(--font-xs); color:var(--c4); letter-spacing:-0.01em; }
+  .portal-card .arrow { font-size:1.1rem; color:rgba(245,245,247,0.38); transition:transform 0.35s var(--ease-out),color 0.3s ease; }
+  .portal-footer { margin-top:52px; font-size:12px; color:rgba(245,245,247,0.38); letter-spacing:0; }
   /* Hero section */
   .hero-section {
     display:flex; flex-direction:column; align-items:center;
     width:100vw; margin-left:calc(-50vw + 50%);
-    padding:100px 24px 56px;
+    padding:16px 24px 0;
   }
-  /* Title image */
-  .title-image { margin:0; padding:0; background:none; -webkit-text-fill-color:initial; margin-bottom:12px; }
-  .title-image img { display:block; margin:0 auto; max-width:380px; width:90%; height:auto; }
-  @keyframes titleFadeIn { from { opacity:0; transform:translateY(24px) scale(0.98); filter:blur(4px); } to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); } }
-  .title-image.visible img { animation:titleFadeIn 1s cubic-bezier(0.16,1,0.3,1) both; }
-  @media(max-width:1200px){ .title-image img { max-width:320px; } }
-  @media(max-width:768px){ .portal-cards{grid-template-columns:1fr;} .hero-section{padding:60px 20px 32px;} }
+  @media(max-width:768px){ .portal{padding:84px 20px 56px;} .portal-title{font-size:clamp(2.35rem,10vw,2.7rem);} .portal-title span{display:block;} .portal-cards{grid-template-columns:1fr;margin-top:36px;} .hero-section{padding:0 20px;} .portal-card{min-height:210px;} }
   @media(min-width:769px) and (max-width:1100px){ .portal-cards{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:768px){ .title-image img { max-width:260px; width:85%; } }
 </style>
 </head>
 <body>
+<a class="home-btn site-home-btn" href="../../../index.html" aria-label="返回王柏晰个人站">返回个站 ↗</a>
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
 <div class="bg-orb bg-orb-3"></div>
 <div class="portal">
   <div class="hero-section">
-    <h1 class="title-image reveal d1" aria-label="AI 产品炼金实验室">
-      <img src="assets/images/title-graffiti.png" alt="AI 产品炼金实验室">
-    </h1>
-    <span class="badge badge-purple reveal d2" style="margin-top:10px">系统化 AI 产品技能学习平台</span>
+    <div class="portal-kicker reveal">系统化 AI 产品技能学习平台</div>
+    <h1 class="portal-title reveal d1"><span>AI 产品</span><span>炼金实验室</span></h1>
+    <p class="portal-subtitle reveal d2">从产品认知、开发流程、Prompt 工程到 RAG，把 AI 产品经理需要反复使用的关键能力拆成可学习的课程路径。</p>
   </div>
 
   <div class="portal-cards">
     <a href="intro-1.html" class="portal-card blue reveal d3">
-      <div class="card-icon">🎯</div>
+      <div class="card-icon">01</div>
       <h2>AI 产品经理基础与大模型产业分析</h2>
       <p>产品基础认知、大模型产业分析、核心能力模型与全流程工作方法</p>
       <div class="card-footer">
@@ -96,7 +72,7 @@
       </div>
     </a>
     <a href="dev-1.html" class="portal-card amber reveal d3">
-      <div class="card-icon">🚀</div>
+      <div class="card-icon">02</div>
       <h2>AI 产品开发与大模型基础</h2>
       <p>从产品研发工作流到大模型核心原理</p>
       <div class="card-footer">
@@ -105,7 +81,7 @@
       </div>
     </a>
     <a href="slide-2.html" class="portal-card purple reveal d4">
-      <div class="card-icon">🧠</div>
+      <div class="card-icon">03</div>
       <h2>大语言模型原理与 Prompt 工程</h2>
       <p>从 LLM 基础原理到 Prompt 高级技巧</p>
       <div class="card-footer">
@@ -114,7 +90,7 @@
       </div>
     </a>
     <a href="rag-1.html" class="portal-card cyan reveal d5">
-      <div class="card-icon">🔗</div>
+      <div class="card-icon">04</div>
       <h2>AI 产品必备技能 — RAG</h2>
       <p>检索增强生成全流程：从知识库构建到检索、增强、生成</p>
       <div class="card-footer">

@@ -21,8 +21,17 @@
   const home = document.createElement('a');
   home.href = 'index.html';
   home.className = 'home-btn';
-  home.innerHTML = '← 首页';
+  home.innerHTML = '← 知识库';
   document.body.appendChild(home);
+
+
+  /* ── Personal Site Button ── */
+  const siteHome = document.createElement('a');
+  siteHome.href = '../index.html';
+  siteHome.className = 'home-btn site-home-btn';
+  siteHome.innerHTML = '返回个站 ↗';
+  siteHome.setAttribute('aria-label', '返回王柏晰个人站');
+  document.body.appendChild(siteHome);
 
   /* ── Build DOM ── */
   const track = document.createElement('div');
